@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="../js/memberReg.js"></script>
+
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery.serializejson.min.js"></script>
+
+<style>
+	.box input[type = button], .box input[type = submit], .box input[type = reset], .box button{
+		margin: 2px 0;
+	}
+	.ziptr:hover{
+		background : lightblue;	
+	}
+
+</style>
+
+<script>
+	$(function(){
+		//아이디 중복검사
+		$('#idbtn').on('click', function(){
+			
+			//외부스크립트의 idCheck()라는 함수를 호출해서 공백,길이,정규식체크하여 올바른 데이터로 검증될때만 ajax를 실행한다.
+			//셋중에 하나라도 틀리면 폴스라서 더이상 실행안해 
+//  			if(!idCheck()){
+// 				return false;
+// 			} 
+			 idValue = $('#id').val().trim(); 
+			
+			
+			$.ajax({
+				url : '/member/IdCheck',
+				type : 'post',
+				data : { 'id' : idValue }, // 'id' 얘가 키  / idValue 얘가 밸류
+				success : function(res){
+					$('#idSpan').html(res.sw).css('color', '#0c6d00').css('font-size', '12px');
+				},
+				error : function(xhr){
+					alert("상태 : " + xhr.status).css('color', '#bd0000').css('font-size', '12px');;
+				},
+				dataType : 'json'
+				
+				
+			})
+		})
+		
+		//우편번호 검색 - window
+		$('#btnzip').on('click', function(){
+			//응답페이지 아니고 요청하는 jsp페이지
+			window.open("zipSearch.jsp", "_blank", "width=400 height=500");//이건 결과jsp가 아니고 요청하는jsp!!!! 요청은jsp나 html파일 둘다가능 근데 응답은무조건 jsp파일이어야함. 그안에 html태그를 쓰는거지
+		})
+		
+		
+		//zipsearch에서 가져온거
+		//우편번호검색 - 모달을 이용한거
+		$('#dongbtn').on('click', function(){
+			dongValue = $('#dong').val().trim();
+			
+			if(dongValue.length<1){
+				alert("동 입력하시오")
+				return false;
+			}			
+			
+			$.ajax({
+//				url : "/member/DongCheck",  html은 무조건 이렇게 써야하는데
+				url : "/member/DongCheck", //여기선 <%= request.getContextPath() %>이걸 폴더이름 손수 써줘야함. 
+				type : 'post', //get해도 service로 가고, post로 해도 service로 간다. 근데 post로 할땐 한글 깨져. 그래서 service메소드안에서 utf-8설정 해야함
+				data : {"dong" : dongValue },
+				success : function(res){
+					code = "<table>";
+					code += "<tr><td>우편번호</td>"
+					code += "<td>주소</td>"
+					code += "<td>번지</td></tr>"
+					
+					$.each(res, function(i,v){
+						code += "<tr class='ziptr'><td>" + v.zipcode + "</td>"
+						code += "<td>" + v.addr + "</td>"
+						code += "<td>" + v.bunji +"</td></tr>"
+					})
+					code += "</table>";
+					$('#result').html(code);
+				},
+				error : function(xhr){
+					alert("상태 : " + xhr.status);
+				},
+				dataType : 'json'
+				
+			})
+		})
+		
+		//선택
+		$('#result').on('click', '.ziptr', function(){
+			zip = $('td:eq(0)', this).text();
+			addr = $('td:eq(1)', this).text();
+			
+			$('#zip').val(zip); //, opener.document이거 필요없어. 여긴 현재창이자나!!!!! 부모창을 열필요가엄찌
+			$('#addr').val(addr);
+			
+			$('#myModal').modal('hide');
+		})
+		
+		
+		//전송 - 회원가입신청
+		$('#joinbtn').on('click', function(){
+			//입력한 모든 값을 가져온다.
+			//$('#id')val();  $('#name')val(); 원래 이렇게 해야하는데 이렇게 안할거야. serialize할거야
+/* 			$('#joinform').serializeJSON() //제이슨 - 이거쓸땐 jquery.serializejson.min.js 이거 필요하다!!!!!!!!!!!!
+			$('#joinform').serializeArray() //배열
+			$('#joinform').serialize() //문자열 */
+			
+			console.log($('#joinform').serializeJSON());
+			/* 			console.log($('#joinform').serializeArray());
+			console.log($('#joinform').serialize()); */
+			
+			//각 항목의 정규식과 길이, 공백을 체크
+			//체크한 결과가 모두 올바르면 ajax를 실행한다.
+			//만약 하나라도 올바르지 않은 데이터가 포함되어 있다면 리턴한다.
+// 			if(!regCheck()){//역시 외부스크립트의 regCheck()함수를 호출해서 체크체크
+// 				return false;
+// 			}
+			
+			
+			$.ajax({
+				url : '/member/join.do',
+				data : $('#joinform').serializeJSON(), 
+				type : 'post',
+				success : function(res){
+					$('#joinSpan').html(res.sw).css('color', 'crimson');
+				},
+				error : function(xhr){
+					alert("상태 : " + xhr.status);	
+				},
+				dataType : 'json'
+			})
+			
+			
+			
+		})
+		
+		
+	})
+</script>
+</head>
+<body>
+	<div class = "box">
+		아이디 중복검사 <br>
+		우편번호 검색 - window.open / modal<br>
+		<br>
+		<div class="result" id = "result1">
+		
+			<div class="container">
+			  <h2 style="padding-bottom:20px;">회원가입</h2>
+			  <form id="joinform" class="form-horizontal">
+			  
+			  	<div class="form-group">
+			      <label class="control-label col-sm-2" for="id">아이디</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="id" placeholder="Please enter your ID" name="mem_id">
+			      </div>
+			        <input id="idbtn" class = "btn btn-primary" type="button" value ="중복검사">
+			        <span id="idSpan"></span>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="name">이름</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="name" placeholder="Enter your name" name="mem_name" onchange="checkVal(this.value,'name');">
+			        <span id="spanName" ></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="birth">생년월일</label>
+			      <div class="col-sm-5">
+			        <input type="date" class="form-control" id="birth" placeholder="Enter your date of birth" name="mem_birth"  onchange="checkVal(this.value,'bir');">
+					<span id="birspan"></span>			     
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="pwd">비밀번호</label>
+			      <div class="col-sm-5">          
+			        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="mem_pass" onchange="checkVal(this.value,'pwd');">
+			        <span id="spanPwd" ></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="hp">핸드폰번호</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="hp" placeholder="010-1234-5678" name="mem_hp" onchange="checkVal(this.value,'hp');">
+			        <span id="telspan"></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="email">이메일</label>
+			      <div class="col-sm-5">
+			        <input type="email" class="form-control" id="email" placeholder="test@gmail.com" name="mem_mail" onchange="checkVal(this.value,'email');">
+			        <span id="emailspan"></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="zip">우편번호</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="zip" placeholder="Enter postcode" name="mem_zip" onchange="checkVal(this.value,'zip');">
+			      </div>
+			      	<input id="btnzip" type="button" value = "번호검색window" class="btn btn-info" > 
+			      	<input type="button" data-toggle="modal" data-target="#myModal" id='modalzip' value="번호검색modal" class="btn btn-info">
+			      	<span id="zipspan"></span> 
+			    </div>
+			    
+			    
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="addr">주소</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="addr" placeholder="Enter your address" name="mem_add1"  onchange="checkVal(this.value,'addr');">
+			         <span id="addr1span"></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">
+			      <label class="control-label col-sm-2" for="addr2">상세주소</label>
+			      <div class="col-sm-5">
+			        <input type="text" class="form-control" id="addr2" placeholder="Enter your detailed address" name="mem_add2" onchange="checkVal(this.value,'addr2');">
+			        <span id="addr2span"></span>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">        
+			      <div class="col-sm-offset-2 col-sm-10">
+			        <div class="checkbox">
+			          <label><input type="checkbox" name="remember">다음에도 기억하기</label>
+			        </div>
+			      </div>
+			    </div>
+			    
+			    <div class="form-group">        
+			      <div class="col-sm-offset-2 col-sm-10">
+			        <button id="joinbtn" type="button" class="btn btn-primary btn-lg">확인</button>
+			        <span id="joinSpan"></span>
+			      </div>
+			    </div>
+			    
+			  </form>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h3 class="modal-title">우편번호 검색</h3>
+	      </div>
+	      <div class="modal-body">
+	      	<form action="">
+				찾고자 하는 동을 입력하세요.<br>
+				<input type="text" id="dong">
+				<input type="button" value="검색" id="dongbtn"><br><br>
+				<div id="result"></div> 
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>	<!-- Modal -->
+	
+</body>
+</html>
