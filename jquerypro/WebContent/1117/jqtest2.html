@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+</style>
+<script>
+	$(document).ready(function(){ //이름은 없지만 뒤에서 호출해서 사용하는거 백그라운드에서 호출이됨 callback function. 
+		$('#btn1').on('click', function(){
+			$('#result1').html("안녕하세요.<br>jQuery입니다.") //;찍지 않으면 계속 이어서 쓸수있음 ;찍으면 $().~ 쓰고 다시 해야함
+						 .css('color', '#222').css('background', 'orange').css('font-weight', '900');
+		})
+	})
+</script>
+</head>
+<body>
+<pre>
+ (CDN:Content Delivery Network)방식으로 jQuery 사용
+  - (content delivery network) 콘텐츠 전송망((콘텐츠를 여러 서버에 저장해 두고 사용자의 요청이 있을 때 가장 빠른 경로를 찾아 전송하는 시스템))
+ 구글이나 마이크로소프트에서 제공하는 CDN(공개서버)로 부터 네트워크를 통하여 웹페이지를 실행할 때마다 다운로드 받을 수도 있다.
+ 단, 로컬 컴퓨터에는 저장되지 않는다. 
+</pre>
+	<div class = "box">
+		<h3>(CDN:Content Delivery Network)방식으로 jQuery 사용</h3>		
+		내용<br>
+		<input id = "btn1" type = "button" value = "확인">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+</body>
+</html>

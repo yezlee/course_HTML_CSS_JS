@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src ="../js/jquery-3.5.1.min.js"></script>
+<style>
+</style>
+<script>
+	$(function(){
+		$('#result1 p').on('click', function(){
+			v_text = $(this).text();
+			
+			$('<img>', {
+				'src' : '../images/' + v_text + '.jpg',
+				'alt' : v_text,
+				'width' : '100px'
+			}).prependTo(this) //prepend는 this(여기선p태그) 앞으로가고 append는 뒤로가고
+		})
+		
+		
+		$('#result2 p').on('click', function(){
+			v_text = $(this).text();
+			
+			v_img = $('<img>', {
+				'src' : '../images/' + v_text + '.jpg',
+				'alt' : v_text,
+				'width' : '100px'
+			})
+			
+// 			$(this).append(v_img)    //append랑 appendTo랑 기능은 같은데 쓰는방법이 다름
+// 			$(v_img).appendTo(this)
+			
+// 			$(this).after(v_img);
+//			$(v_img).insertAfter(this)
+			
+//			$(this).before(v_img);
+			$(v_img).insertBefore(this)
+				
+		})
+		
+		
+	})
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>이미지 추가하기</h3>		
+		append(content)/appendTo(selector) : 해당 selector 내부의 뒤로 추가
+		<br>
+		prepend(content)/prependTo(selector) : 해당 selector 내부의 앞으로로 추가
+		<br>
+		<div class="result" id = "result1">
+			<p>수국</p>
+			<p>꽃</p>
+			<p>단풍</p>
+			<p>등대</p>
+			<p>사막</p>
+			<p>펭귄</p>
+		</div>
+	</div>
+	<div class = "box">
+		<h3>이미지 추가하기</h3>		
+		after(content)/insertAfter(selector) : 해당 selector 외부의 뒤로 추가
+		<br>
+		before(content)/insertBefore(selector) : 해당 selector 외부의 앞으로로 추가
+		<br>
+		<div class="result" id = "result2">
+			<p>수국</p>
+			<p>꽃</p>
+			<p>단풍</p>
+			<p>등대</p>
+			<p>사막</p>
+			<p>펭귄</p>
+		</div>
+	</div>
+</body>
+</html>

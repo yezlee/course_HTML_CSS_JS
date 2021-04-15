@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/dtd-map-2.dtd">
+<sqlMap namespace="mymember">
+
+ 	<select id = "selectAllmember" resultClass = "memVo">
+		SELECT * FROM member
+ 	</select>
+ 	 
+ 	<!-- 아이디 중복검사 --> 
+ 	<select id="selectById" parameterClass="string" resultClass="string">
+ 		SELECT mem_id FROM member WHERE mem_id = #data#
+ 	</select>
+ 
+  	<!-- 우편번호 검색 --> 
+ 	<select id="selectByDong" parameterClass="string" resultClass="zipVo">
+ 		 SELECT * FROM ziptb WHERE dong like #data# || '%' 
+ 	</select>
+ 	<!--  parameterClass="string" -> #data# || '%' /  resultClass="zipVo" -> SELECT *  -->
+ 	 
+ 	<!-- 전송  - 얘는 성공하면 null을 반납해!!! insert랑 delete는 성공한 갯수를 int로 반납-->
+ 	<insert id="insertMember" parameterClass="memVo">
+ 		INSERT INTO member(mem_id, mem_pass, mem_name, mem_bir, mem_zip, mem_add1, mem_add2, mem_hp, mem_mail) 
+ 					values(#mem_id#, #mem_pass#, #mem_name#, #mem_bir#, #mem_zip#, #mem_add1#, #mem_add2#, #mem_hp#, #mem_mail#)
+ 					
+ 		<!-- 이렇게 where절로 조건걸어주고 아이디 뽑아오면나중에 ㅇㅇㅇ님 가입성공! 가능 -->			
+ 		<selectKey keyProperty="mem_id" resultClass="string">
+ 			SELECT mem_id FROM member WHERE mem_id = #mem_id#
+ 		</selectKey>				
+ 	</insert> 
+ 	 
+</sqlMap>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src ="../js/jquery-3.5.1.min.js"></script>
+<style>
+	img{
+		width : 100px;
+		margin : 5px;
+	}
+</style>
+<script>
+	$(function(){
+		$('.box1 input:button').on('click', function(){
+			v_img = $('<img>', {
+				'src' : '../images/국화.jpg',
+				'alt' : '국화',
+				'width' : '100px'
+			})
+			//$(v_img).appendTo('#result1'); 이거나 아래거나 결과 같음
+			$('#result1').append(v_img);
+		})
+		
+		
+/* 		$('.box2 input').on('click', function(){
+			$('#result2 img:first').appendTo('#result2');
+		}) */
+		
+		// $('.box input[value=확인]') 밸류로 하는방법
+		$('#start').on('click', function(){
+			a = setInterval(function(){
+				$('#result2 img:first').appendTo('#result2');
+			} , 500);
+				
+			
+			
+//			$(this).hide();		
+			
+			//없어지진 않지만 사용은 못함 - 확인버튼 한번만 사용하고 기능 못하게 만들어버림
+//			$(this).prop('disabled', true);
+		
+			$(this).attr('disabled', 'disabled'); // attr은 값을 직접 주는거
+			
+		
+		
+		})
+		
+		$('#end').on('click', function(){
+			clearInterval(a);
+		})
+		
+	})
+</script>
+</head>
+<body>
+	<div class = "box box1">
+		<h3>추가</h3>		
+		새로운 요소 추가<br>
+		<input type = "button" value = "확인">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box box2">
+		<h3>추가</h3>		
+		기존의 요소를 추가 - 이동의 의미(잘라내기, 붙여넣기)<br>
+		<input id = "start"  type = "button" value = "확인">
+		<input id = "end" type = "button" value = "종료">
+		<br>
+		<div class="result" id = "result2">
+			<img src = "../images/수국.jpg" alt =""> 
+			<img src = "../images/꽃.jpg" alt =""> 
+			<img src = "../images/단풍.jpg" alt =""> 
+			<img src = "../images/등대.jpg" alt =""> 
+			<img src = "../images/사막.jpg" alt =""> 
+			<img src = "../images/산.png" alt =""> 
+		</div>
+	</div>
+</body>
+</html>

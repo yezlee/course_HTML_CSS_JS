@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src ="../js/jquery-3.5.1.min.js"></script>
+<script src ="../js/jquery.serializejson.min.js"></script>
+<style>
+</style>
+<script>
+	$(function(){
+		$('#result1 input:button').on('click', function(){
+//			console.log( $('#ff').serialize());
+//			console.log( $('#ff').serializeArray());
+ 			console.log( $('#ff').serializeJSON()); //이거 하려면 serializejson.min.js 이거 필요
+			
+			/* v_name = $('#name').val()
+			v_id = $('#id').val()
+			v_tel = $('#tel').val()
+			
+			v_data = { "name" : v_name, "id" : v_id, "tel" : v_tel}; */
+			
+			//이렇게 하면 저절로 직렬화돼서 코딩안해줘도 되는데 그냥 해보자
+			//서버로 보내기
+			$.ajax({
+				url : 'test.jsp',
+				type : 'post',
+				data: $('#ff').serializeJSON(), 
+				success : function(res){ //res 이건 응답데이터 - 변수이름이니까 아무거나 줘도돼
+					code = "";
+				
+					code += "<div> 이름 : " + res.name + "<br>"
+					code += " 아이디 : " + res.id + "<br>"
+					code += " 전화번호 : " + res.tel + "</div>"
+					
+//					$('#result1').html(code); //html이걸로 하면 덮어쓰기
+					$('#result1').append(code);
+					
+				},
+				error : function(xhr){ //XMLHttpRequest - 우리가 직접 하지않아 저절로 됨? 
+					alert("상태  : " + xhr.status);
+					//status : 304(post냐 get이냐 짝이안맞음), 404(파일이 없음), 500(코딩(syntax)잘못한거) , 200(이건 성공임 근데 에러가 나면, 데이텅 응답은 성공이지만 데이터형식(json)이 잘못된거)
+				},
+				dataType : 'json' //여기에 올수있는게 text, json, html, xml 정도
+			
+			})
+			
+		})
+	})
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>AJAX를 이용한 전송과 응답</h3>		
+		전송 후 처리결과를 새로운 페이지로 다시 로드되지 않고(jsp처럼) 현 페이지의 일부분에 로딩한다.<br>
+		<br>
+		<div class="result" id = "result1">
+			 <form id="ff" action = "test.jsp" method = "post"> 
+				이름 : <input type = "text" name = "name" id="name"><br>
+				아이디 : <input type = "text" name = "id" id="id"><br>
+				전화번호 : <input type = "text" name = "tel" id="tel"><br>
+				<input type = "button" value ="전송"><br>
+			 </form>
+		</div>
+	</div>
+</body>
+</html>
