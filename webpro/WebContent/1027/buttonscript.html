@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = "stylesheet" href ="../css/public.css">
+<style></style>
+<script>
+	/*함수 정의*/
+	function calc(){ /* public void ~ 이렇게 시작하는건 자바고. 메소드를 여기선 function으로 함.*/
+		
+		var a = document.ff.price.value //var 변수 a에다가 담는거야. string도 int도 double도 다~~ 넣을수 있어
+		var b = document.ff.qty.value //document는 내장객체
+			c = a * b;
+		
+			alert(c + "원입니다.");
+		
+		/* return aa ->  return값 있음 그냥 써줌돼. 위에 void나 int 상관없이*/
+	}
+</script>
+
+</head>
+<body>
+<pre>
+ input type ="button" 요소는 자체 기능이 없다.
+ 기능을 부여하기 위해서 script를 이용한다.
+ 기능은 직접 input태그안에 줘도 되고(인라인스크립트) style처럼 위에서 &lt;script> 이렇게 해서 줄수도 있음	
+ 
+ script에서 form의 요소에 접근하기
+ - form의 name속성을 이용하기
+ => document.ff.price
+ => document.ff.qty
+ 
+ - form요소의 값을 가져오기 (value)
+ => document.ff.price.value
+ => document.ff.qty.value
+ 
+ 
+ 
+ 
+</pre>
+
+	<form name = "ff" action ="script.jsp" method ="post"> <!-- 포스트방식임!!!!! -->
+		물품가격 : <input type = "text" name = "price"><br>
+		수량 : <input type = "text" name = "qty"><br><br>
+		
+		&lt;input type ="button" value = "확인 (무조건만원)" onclick="alert('10,000원 입니다.')"&gt; <br><!-- type ="button" 이럴땐 액션이 수행되지 않고 뒤에 onclick를 넣어주면 된다.  onclick="alert('Hello!')" 이렇게하면 핼로우뜸-->
+		<input type ="button" value = "확인 (무조건만원)" onclick="alert('10,000원 입니다.')"> <br><br> <!-- type ="button" 이럴땐 액션이 수행되지 않고 뒤에 onclick를 넣어주면 된다.  onclick="alert('Hello!')" 이렇게하면 핼로우뜸-->
+		
+		&lt;input type ="button" value = "확인 (calc)" onclick="calc()"&gt; <br> <!-- 함수 호출!!!!!!!!!!!! 위에 입력한거 호출하는거 -->
+		<input type ="button" value = "확인 (calc)" onclick="calc()"> <br><br><!-- 함수 호출!!!!!!!!!!!! 위에 입력한거 호출하는거 -->
+		
+		<input type ="submit" value = "전송"><!-- 서브밋은 폼에 기능이있어 보내는거. 근데 에러떠. jsp가 없어서 => script.jsp만들어줘서 전송이 돼 이제.-->
+	</form>
+</body>
+</html>

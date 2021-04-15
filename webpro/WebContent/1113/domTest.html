@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	function proc1(){
+//		u_list = document.getElementsByTagName("ul")[0]; //뒤에서 [0]안주면 배열이 되는데 안주면 u_list가 0번째가 된다????,
+		//태그네임이 ul인데 여러개를 가져올수 있어 그래서 0번째 라고 붙여준거야. 유엘 여러개 다 올수 있으니까
+		
+		u_list = document.querySelector('ul');
+		//querySelector라고 쓰면 ul이 여러개이때 0번째것만 가져와 - 하나밖에 못가고와
+		//여러개이면 querySelectorAll 이라고 하고 가져옴
+		listItem = u_list.getElementsByTagName('li');
+		
+		res = ""; 
+		
+		for(i = 0; i < listItem.length; i++){
+			res += listItem[i].firstChild.data + "<br>"; //데이터를 얻기위해서 firstChild뒤에 .data를 적어줘야함!
+		}
+		
+		document.getElementById('result1').innerHTML = res;
+	}
+	
+	function proc2(){
+		ulTag = document.getElementsByTagName('ul')[1]; //querySelectorAll('ul');
+		
+		/* 이거랑 위에 한줄이랑 같은말 
+		ulTag = document.getElementsByTagName('ul');
+		ulTag[1];
+		 */
+		 
+		liTag = ulTag.querySelectorAll('li'); //document.querySelectorAll('li') 이렇게 쓰면 li열개 몽땅 다 나오지
+		console.log(liTag.length); 
+		
+		for(i=0; i<liTag.length; i++){
+			imgData = liTag[i].firstChild.data; //얘가 지금 처음 li뱅쇼
+			
+			//이미지를 생성한다 위에있는거가지고
+			//원래는 <img src ="../images/뱅쇼.jpg" alt="뱅쇼"> 요래 써서 만들어야하지만 createElement로 만드는거
+			v_img = document.createElement("img");	
+			v_img.src = "../images/" + imgData + ".jpg";
+			v_img.alt = imgData;
+			v_img.width = 200; 
+			
+			
+			//생성된 이미지를 지금 새로 추가하려고 하는거임 어제는 하나 만드어주고 위에있는 코드만 쓰면 됐는데
+			//생성된 이미지(자식)을 li(부모)에 추가
+//			result2 = document.getElementById('result2');
+			liTag[i].appendChild(v_img);
+		}	
+	}
+
+	function proc3(liTag) { //li에 this해줘서 파라미터로 오는거
+//		liTag.firstChild.data //아까는 한번에 꺼내는거라 for문돈거고
+		//지금은 클릭한것만 하면 되니까 liTag로 받은거 하나만 . 클릭한거 하나만
+		textData = liTag.firstChild.data;
+				
+		//이미지생성
+		v_img = document.createElement("img");	
+		v_img.src = "../images/" + textData + ".jpg";
+		v_img.alt = textData;
+		v_img.width = 200; 
+		
+		liTag.appendChild(v_img); //지금은 하나밖에 없으니까. liTag배열에 넣어주지않아도돼
+		
+	}
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>Dom(Document Object Model) Test</h3>		
+		UL요소와 자식요소에 접근해서 값을 가져온다. <br>
+		 <ul>
+	        <li>홍길동</li>
+	        <li>개나리</li>
+	        <li>진달래</li>
+	        <li>수선화</li>
+	        <li>라일락</li>
+   		 </ul>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>Dom(Document Object Model) Test</h3>		
+		UL요소와 자식요소에 접근해서 값을 가져온다. <br>
+		버튼을 클릭하면 이미지를 생성하여 출력한다.<br>
+		 <ul>
+	        <li>뱅쇼</li>
+	        <li>펭귄</li>
+	        <li>국화</li>
+	        <li>등대</li>
+	        <li>사자</li>
+   		 </ul>
+		<input type = "button" value = "확인" onclick = "proc2()">
+		<br>
+		<div class="result" id = "result2"></div>
+	</div>
+	<div class = "box">
+		<h3>Dom(Document Object Model) Test</h3>		
+		UL요소와 자식요소에 접근해서 값을 가져온다. <br>
+		각 아이템을 클릭하면 이미지를 생성하여 출력한다.<br>
+		 <ul>
+	        <li onclick = "proc3(this)">뱅쇼</li> <!-- 어떤걸 호출해야하는지 알아야하니까 this를 붙여줘 -->
+	        <li onclick = "proc3(this)">펭귄</li>
+	        <li onclick = "proc3(this)">국화</li>
+	        <li onclick = "proc3(this)">등대</li>
+	        <li onclick = "proc3(this)">사자</li>
+   		 </ul>
+<!-- 	<input type = "button" value = "확인" onclick = "proc3()"> -->
+		<br>
+		<div class="result" id = "result3"></div>
+	</div>
+</body>
+</html>

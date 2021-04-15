@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	function proc1(){
+		myCar = {};
+		
+		myCar.name = "홍길동";
+		myCar.tel = "010-1234-5678";
+		myCar.addr = "대전";
+		
+		result1 = document.getElementById('result1');
+//		res = "이름 : " + this.name + "<br>";
+		res = ` 이름 : ${myCar.name} <br> `; //backtick안에서는 this를 함수 이름으로 적어줌
+		res += ` 전화번호 : ${myCar.tel} <br> `;
+		res += ` 주소 : ${myCar.addr} <br> `;
+		
+		result1.innerHTML = res;
+	}
+	
+	//전역변수!!!!
+	//이렇게 함수 안에다 안쓰고, 밖에다 쓰면 전역변수. var를 붙여도 전역 안 붙여도 전역. 
+	rect = {
+			width : 10, 
+			height : 8,
+			getArea : function() { return this.width * this.height; }, //return 꼭 해줘야돼. 그래야 아래서 출력해주는거
+			getCircum : function() { return (this.width + this.height) * 2; } 
+			//	backtick으로 쓸꺼면 this를 rect(함수이름)으로 써줘야해. 여기서 this는 위에 rect를 말함.
+	}
+
+	rect.disp = function(){
+		res = ` 이름 : ${rect.name} <br> `;
+		res += ` 가로 : ${rect.width} <br> `;
+		res += ` 세로 : ${rect.height} <br> `;
+		res += ` 면적 : ${rect.getArea()} <br> `;
+		res += ` 둘레 : ${rect.getCircum()} <br> `;
+	
+		//여기서 this는 rect.disp를 말함	???????????????????????????????
+		
+		return res;
+	}
+	
+	
+	function proc2(){
+		
+		//동적으로 추가(메소드안에 없던걸)
+		rect.name = "사각형"; //안에는 아무것도 엇었는데 아래서 속성을 추가해 줄 수있다.
+		
+		result2 = document.getElementById('result2');
+/* 		res = ` 이름 : ${rect.name} <br> `;
+		res += ` 가로 : ${rect.width} <br> `;
+		res += ` 세로 : ${rect.height} <br> `;
+		res += ` 면적 : ${rect.getArea()} <br> `;
+		res += ` 둘레 : ${rect.getCircum()} <br> `;
+		
+		result2.innerHTML = res;
+ */
+ 		result = rect.disp();
+ 		result2.innerHTML = result;
+ 		
+ 
+	}
+	function proc3(){
+		su = parseInt(prompt("가로 증가할 값을 입력하세요."));
+		rect.width = rect.width + su;
+	//	setWidth() = getWidth() 자바에선 이 역할이야
+	
+	//	rect.getArea()
+	//	rect.getCircum()
+	
+		result3 = document.getElementById('result3');
+		
+		res = rect.disp();
+		result3.innerHTML = res;
+		
+	}
+	function proc4(){
+		su = parseInt(prompt("세로 증가할 값을 입력하세요."));
+		rect.height = rect.height + su;
+		
+		result4 = document.getElementById('result4');
+		
+		/*
+		res = rect.disp();
+		함수를 불러서 결과값  res를 갖고 함수를 호출한곳으로 리턴
+		그걸 innerHTML에 넣어
+		result4.innerHTML = res;
+		*/
+		result4.innerHTML = rect.disp(); //이렇게 하면,   
+	}
+
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>객체Rect</h3>		
+		객체 상수에 의한 객체 생성<br>
+		myCar = {} ;<br>
+		myCar.name = "홍길동" 이렇게 쓸 수 있다.<br>
+		선언 후에 동적으로 속성을 추가해서 사용 가능<br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>객체Rect</h3>		
+		객체 상수에 의한 객체 생성<br>
+		rect = {} ; rect.width=10; <br>
+		rect = {width : 10, height : 20,...} ;<br>
+		<input type = "button" value = "확인" onclick = "proc2()">
+		<input type = "button" value = "가로증가" onclick = "proc3()">
+		<input type = "button" value = "세로증가" onclick = "proc4()">
+		<br>
+		<div class="result" id = "result2"></div>
+		<div class="result" id = "result3"></div>
+		<div class="result" id = "result4"></div>
+	</div>
+</body>
+</html>

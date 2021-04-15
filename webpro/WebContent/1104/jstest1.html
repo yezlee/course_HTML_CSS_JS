@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script type= "text/javascript" >
+	function proc1(){
+		//alert("Hello!")
+		//document.write("Hello!!") //출력할수는 있지만 이걸 쓸일은 거의 없어.
+		
+		document.getElementById('result').textContent = "Hello!!!" //textContent이거 대신에 innerHTML써도 무방
+	}
+</script>
+</head>
+<body>
+<pre>
+ 확인버튼 클릭하면 proc1() 함수 호출
+ 함수 내에서 출력문을 작성한다.
+ 
+ alert("Hello!")
+    ==> 팝업창으로 결과를 출력한다.
+ 
+ document.write("Hello!!")
+    ==> 기존의 만들어져 실행되어있는 문서를 덮어쓰기가 된다.
+ 
+ document.getElementById('result').textContent = "Hello!!!"
+    ==> 지금 실행하고있는거
+</pre>
+	<input type = "button" value = "확인" onclick = "proc1()">
+	<div id="result">
+	</div>
+</body>
+</html>

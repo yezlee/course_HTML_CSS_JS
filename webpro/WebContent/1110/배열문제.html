@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script type="text/javascript">
+	function proc1(){
+		arr = new Array();
+		while(true){
+			//입력
+			input = prompt("이름을 입력하세요."); 
+						
+			//비교 - input이 공백이거나 null이거나 
+			if(input == "" || input == null) break; // 무조건 인풋에 값이 있다고 저장하면 안돼.
+			//!!!!참고로 space-bar는 공백이어도 그 값을 가짐 
+			// input == null 이건 취소가 널이라는 얘기
+			
+			//배열에 저장 - push(입력한값) 
+			arr.push(input); // 이거 자체가 배열에 저장한거
+			
+		}
+		
+		//arr배열을 출력
+		document.getElementById('result1').innerHTML = arr;
+		
+	}
+	
+	function proc2(){
+		arr = new Array();
+		
+		while(arr.length < 5){
+			input = prompt("정수를 입력하세요.");
+			
+			if(arr.indexOf(input) == -1){
+				arr.push(input);
+			}
+		}
+		
+		document.getElementById('result2').innerHTML = arr;
+	}
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>문제1</h3>		
+		사람 이름을 계속 입력 받아 배열에 저장하고 그 저장된 이름을 출력하는 프로그램<br>
+		입력은 prompt<br>
+		공백문자를 입력하거나 "취소" 버튼을 눌렀을 때 종료한다.<br>
+		"취소" 버튼은 null<br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>문제2</h3>		
+		서로 중복되지 않은 정수 5개를 입력 받아 출력하는 프로그램<br>
+		입력은 prompt - 입력횟수는 모르고, 배열갯수가 5개이면 종료한다. <br>
+		arr = arr.indexOf(입력값) - 입력값이 배열에 이미 저장되어 있다면 0이상의 값이 나오고<br>
+		입력값이 배열에 없다면 -1 결과에 나온다. 이 때, 배열에 저장한다.<br>
+		<input type = "button" value = "확인" onclick = "proc2()">
+		<br>
+		<div class="result" id = "result2"></div>
+	</div>
+</body>
+</html>

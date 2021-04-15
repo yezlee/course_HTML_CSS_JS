@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	str = "I Love Korea 만세 KOREA"
+	function proc1(){
+		value = str.charAt(10);
+		document.getElementById('result1').innerHTML = "str.charAt(10) : " + value;
+	}
+	
+	function proc2(){
+		value = str.charCodeAt(10);
+		document.getElementById('result2').innerHTML = "str.charCodeAt(10) : " + value;
+	}
+	
+	function proc3(){
+		idx = str.indexOf("만세");
+		document.getElementById('result3').innerHTML = "str.indexOf('만세') : " + idx;
+	}
+	
+	function proc4(){
+		namevalue = document.getElementById("name").value;
+		res = "입력 : " + namevalue.length + "<br>";
+		
+		namevalue = namevalue.trim(); 
+		//namevalue = document.getElementById("name").value.trim; 위에서 이렇게 써줘도 됨
+		res += "trim()한 결과: " + namevalue.length + "<br>";
+		
+		if(namevalue.length < 1){
+			window.alert("이름은 필수항목 입니다.") //window. 생략가능
+			return; //만약 입력이 안됐으면 그냥 리턴하고 proc4번을 끝내라. 종료해라
+		}
+		
+		res += "이름 : " + namevalue;
+		document.getElementById('result4').innerHTML = res;
+	}
+	
+	function proc5(){
+		str1 = str.substring(2,6);
+		
+		res = "str.substring(2,6) : " + str1;
+		document.getElementById('result5').innerHTML = res;
+	}
+	
+	function proc6(){
+		str2 = str.slice(13,15);
+		
+		res = "str.slice(13,15) : " + str2;
+		document.getElementById('result6').innerHTML = res;
+	}
+	
+	function proc7(){
+		str3 = str.substr(7,5);
+		
+		res = "str.substr(7,5) : " + str3;
+		document.getElementById('result7').innerHTML = res;
+	}
+	
+	function proc8(){
+		str1 = str.trim().split(" ");//split(" ", 3) 이렇게 해주면 배열3개만 나오지!
+		
+		res = 'str.split(" ") : ' + str + "<br>";
+		
+		for(i=0; i<str.length;i++){
+			res += i + "번째 : " + str1[i] + "<br>";
+		}
+		
+		document.getElementById('result8').innerHTML = res;
+	}
+	
+	function proc9(){
+		str1 = str.trim().split(" ", 3);
+		
+		res = 'str.split(" ", 3) : ' + str + "<br>";
+		
+		for(i=0; i<str.length;i++){
+			res += i + "번째 : " + str1[i] + "<br>";
+		}
+		
+		document.getElementById('result9').innerHTML = res;
+	}
+	
+	function proc10(){
+		text = document.getElementById('area').value;
+		
+		text = text.replace(/\r/g, '<br>').replace(/\n/g, '<br>');
+		
+		document.getElementById('result10').innerHTML = text;
+	}
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>String</h3>	
+		<strong>str = "I Love Korea 만세 KOREA"</strong><br><br>		
+		charAt(index) : 인덱스 위치의 문자를 얻는다.<br>
+		==> index 위치의 문자를 구한다. index가 문자열의 범위를 벗어나면 빈 문자열이 리턴된다.<br><br>
+		charCodeAt(index) : 인덱스 위치의 유니코드(아스키코드값) 값을 얻는다.<br>
+		==> index 위치의 문자에 대한 유니코드를 구한다.<br><br>
+		indexOf(item) : item(문자/문자열)의 위치를 얻는다.<br>
+		==> indexOf(searchvalue, start)<br>
+		==> 부분 문자열의 위치를 검색한다. start는 검색 시작 위치이며 생략시 0이 적용되어 처음부터 검색한다. 없을 경우 -1을 리턴한다.<br><br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<input type = "button" value = "확인" onclick = "proc2()">
+		<input type = "button" value = "확인" onclick = "proc3()">
+		<br>
+		<div class="result" id = "result1"></div>
+		<div class="result" id = "result2"></div>
+		<div class="result" id = "result3"></div>
+	</div>
+	<div class = "box">
+		<h3>String</h3>	
+		trim() : 앞뒤 공백을 제거한다.<br>
+		입력한 값이 공백인지 아닌지 체크한다.<br>
+		공백이면 다시 입력하도록 한다.<br><br>
+		이름&nbsp;<input type = "text" id = "name"><br>
+		<input type = "button" value = "확인" onclick = "proc4()">
+		<br>
+		<div class="result" id = "result4"></div>
+	</div>
+	<div class = "box">
+		<h3>String</h3>	
+		substring(from, to) : start ~ end-1 까지의 문자열을 추출<br>
+		==> 두 위치 사이의 부분 문자열을 추출한다. to를 생략하면 뒤쪽 모든 문자열을 추출한다.<br><br>
+		slice(start, end) : start ~ end-1 까지의 문자열을 추출<br>
+		==>start 위치에서 end 위치까지 부분 문자열을 추출한다. 음수로 끝에서부터 위치를 지정할 수 있다.<br><br>
+		substr(start, length) : start에서 length만큼의 문자를 추출<br>
+		==> start에서 시작하여 length 길이만큼 부분 문자열을 추출한다. 길이를 생략하면 뒤쪽 모든 문자열을 추출한다.<br>
+		<input type = "button" value = "Love" onclick = "proc5()">
+		<input type = "button" value = "만세" onclick = "proc6()">
+		<input type = "button" value = "Korea" onclick = "proc7()">
+		<br>
+		<div class="result" id = "result5"></div>
+		<div class="result" id = "result6"></div>
+		<div class="result" id = "result7"></div>
+	</div>
+	<div class = "box">
+		<h3>String</h3>	
+		split(separator, limit) : 구분자를 기준으로 문자열을 분리하여 배열로 리턴한다.<br>
+		limit 갯수는 생략 가능한데, 생략하게 되면 문자열의 끝까지 수행하게 된다. 갯수를 정하면 갯수만큼만 수행한다.<br>
+		==> 구분자로 구분된 문자열을 분리하여 배열로 리턴한다. limit는 최대 몇 개까지 리턴할 것인가를 지정한다.<br>
+		<input type = "button" value = "split" onclick = "proc8()">
+		<input type = "button" value = "split" onclick = "proc9()">
+		<br>
+		<div class="result" id = "result8"></div>
+		<div class="result" id = "result9"></div>
+	</div>
+	<div class = "box">
+		<h3>String</h3>	
+		replace(old, new) : old문자를 new문자로 변경한다.<br>
+		  - 정규식 사용 가능 <br><br>
+		/^[a-z]$/<br>
+		pattern = /[가-힣]{3,5}/ <br>
+		==> 정규식은 // 사이에 쓴다. <br><br>
+		text = text.replace(/\r/g, '&lt;br>').replace(/\n/g, '&lt;br>') <br>
+		위에서 쓴 이것도 //g 정규식. g를 써줘야지 전체가 해당됨 <br>
+		==> <br><br>
+		<textarea rows = "10" cols = "50" id ="area"> </textarea><br>
+		<input type = "button" value = "replace" onclick = "proc10()">
+		<br>
+		<div class="result" id = "result10"></div>
+	</div>
+</body>
+</html>

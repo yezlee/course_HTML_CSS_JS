@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	table{
+		border-collapse: collapse;
+	}
+	tr:nth-child(1){
+		font-weight : bold;
+	}
+	td:nth-child(1){
+		font-weight : bold;
+	}
+	td{
+		width : 50px;
+		height : 40px;
+		table-collapse : collapse;
+		text-align : center;
+	}
+</style>
+<script>
+	function proc1(){
+		//단입력
+		var dan = prompt("단입력"); // var쓰면 지역변수
+		res = `${dan} 단 <br>`; //res 초기화
+		
+		//1~9 반복 출력
+		for(var i = 1; i < 10; i++){
+			res += `${dan} * ${i} = ${dan*i} <br>`
+		}
+		result1 = document.getElementById("result1");
+		result1.innerHTML = res;
+	}
+	
+	function proc2(){
+		res = "";
+		
+		for(i =2 ; i < 10; i++){
+			res += `<br>` //여기는 스크립트. html이 아니라서 어디에 <br>을 출력할건지 알려줘야지. res += 이렇게 하면 res에 대입하고 누적하라는거
+			res += `${i}단 <br>`;
+			for (k = 1; k < 10; k++){
+				res += `${i} * ${k} = ${i*k} <br>`;
+			}
+		}
+		result2 = document.getElementById('result2');
+		result2.innerHTML = res;
+	}
+	
+	function proc3(){
+		res = "<table border = '1' >"; //따옴표 위치 바뀌어도 됨. ''를 밖에 ""를 안에
+		
+		for(i = 1; i < 10; i++){
+			res += "<tr>";
+			res += "<td>" + i + "</td>";
+			for(k = 2; k < 10; k++){
+				res += "<td>" + i * k + "</td>";
+			}
+			res += "</tr>"; // for문 처음에 시작할때 시작했던 tr 여기서 닫아줌. 안쪽 for문 끝나고 나서
+		}
+		res += "</table>"; // table 닫아주기
+		
+		result3 = document.getElementById("result3");
+		result3.innerHTML = res;
+		
+		
+	}
+</script>
+
+</head>
+<body>
+	<div class = "box">
+		<h3>1. 구구단</h3>
+		단 입력 - prompt()<br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>2. 구구단</h3>
+		다중 for문을 이용해서 구구단 출력<br>
+		<input type = "button" value = "확인" onclick = "proc2()">
+		<br>
+		<div class="result" id = "result2"></div>
+	</div>
+	<div class = "box">
+		<h3>3. 구구단</h3>
+		다중 for문을 이용해서 구구단 출력<br>
+		table을 이용해서 출력<br>
+		<input type = "button" value ="확인" onclick = "proc3()">
+		<br>
+		<div class="result" id = "result3"></div>
+	</div>
+</body>
+</html>

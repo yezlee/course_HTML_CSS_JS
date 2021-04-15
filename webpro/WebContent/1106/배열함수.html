@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	function proc1(){
+		fruits = ["사과", " 바나나", " 수박", " 참외", " 복숭아", " 메론"];
+		
+		result1 = document.getElementById("result1");
+		print(result1);
+	}/*변수이름이 달라서 매개변수를 쓴거다.?!!!?!?!?!?!?*/
+	
+	function print(result){/*print함수를 별도로 만들어. 그래서 얘를 이용해서 한번에 프린트 하는거지. 이 함수는, 아무데나 적어도 상관없음. 스크립안이면*/
+		/*print(result1); 이렇게 해주면 프린트 함수안에서 result가 파라미터로 받는거야
+		result1,2,3 이름이 다 달라서 매개변수를 준거임. 이름이 달라서 갖고온거임..????????*/
+		res = "";
+		for(i = 0; i < fruits.length; i++){
+			res += fruits[i] + " ";
+		}
+		result.textContent = res; /*안에 태그가 없으니까 그냥 res만 오는거...???????????*/		
+		
+		
+	}
+	function proc2(){
+		fruits = ["사과", " 바나나", " 수박", " 참외", " 복숭아"];
+		
+		result2 = document.getElementById("result2");
+		print(result2);
+	}
+	function proc3(){
+		fruits = ["사과", " 참외", " 복숭아", " 메론"];
+		
+		result3 = document.getElementById("result3");
+		print(result3); //프린트함수는 매개변수가 있는거
+	}
+	
+	/*********************************************************/
+	
+	function proc4(){
+		var fruits = ["사과", " 바나나", " 수박", " 복숭아", " 메론"];
+		var result = document.querySelector("#result4");
+		localprint(fruits, result);
+		/*var result 요 변수 이름은 같아도 돼. 지역변수라서*/
+	}
+	function proc5(){
+		var fruits = ["사과", " 수박", " 참외", " 복숭아", " 메론"];
+		var result = document.querySelector("#result5");
+		localprint(fruits, result);
+	}
+	function proc6(){
+		var fruits = ["바나나", " 수박", " 참외", " 복숭아", " 메론"];
+		var result = document.querySelector("#result6");
+		localprint(fruits, result); /*얘넨 실인수가 되는거. 파라미터값, 매개변수값*/
+		/*localprint(fruits, result, 30) 
+						이렇게 값은 3개인데 아래 줄수있는 변수는 2개면 마지막거가 무시됨
+						만약에 아래 함수에 
+						function localprint(fr, resultttt, eee)
+						이렇게 주고 함수 안에서 eee를 쓰려고 하면 에러가 뜸.
+		*/
+	}
+	function localprint(fr, resultttt){ /*가인수, 파라미터변수, 매개변수  다 같은말*/
+		/*여기선 var fruits,var result 얘넬 사용할수 없어. 그래서 매개변수를 줘야해*/
+		
+		res = "";
+		
+		for(i = 0; i < fr.length; i++){
+			res += fr[i] + " ";
+		}
+		
+		resultttt.innerHTML = res;
+	}
+	
+	
+	
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>배열</h3>		
+		print() 출력 함수를 정의하고 (따로 만듦!!) <br>
+		전역변수를 이용한 출력 <br>
+		<input type = "button" value = "확인리터럴" onclick = "proc1()">
+		<input type = "button" value = "확인파라미터" onclick = "proc2()">
+		<input type = "button" value = "확인default" onclick = "proc3()">
+		<br>
+		<div class="result" id = "result1"></div>
+		<div class="result" id = "result2"></div>
+		<div class="result" id = "result3"></div>
+	</div>
+	<div class = "box">
+		<h3>배열</h3>		
+		localprint() 출력 함수를 정의하고 (따로 만듦!!) <br>
+		지역변수를 이용한 출력 <br>
+		지역변수는 다른 함수(localprint()함수)를 호출 시 매개변수로 값을 넘긴다.<br>
+		<input type = "button" value = "확인리터럴" onclick = "proc4()">
+		<input type = "button" value = "확인파라미터" onclick = "proc5()">
+		<input type = "button" value = "확인default" onclick = "proc6()">
+		<br>
+		<div class="result" id = "result4"></div>
+		<div class="result" id = "result5"></div>
+		<div class="result" id = "result6"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	.result{
+		height : 115px;
+	}
+	.guess_box{
+		width : 150px;
+		height : 100px;
+		margin : 5px;
+		padding : 3px;
+		background : #eee;
+		float : left;
+	}
+	.guess_box img{
+		width : 100%;
+		height : 100%;
+	}
+	.guess_box img:hover{
+		border-top : 3px solid green;
+	}
+	.box div{
+		
+	}
+</style>
+<script>
+
+	pTag2 = null;
+
+	window.onload = function(){ //  이게 바디보다 먼저 실행되니까, 아래 함수 실행하고 이거 실행하라고 
+		 v_imgs = document.getElementsByClassName('c_img');
+		 v_imgs = document.querySelectorAll('.c_img');
+		 
+		 for(i=0; i < v_imgs.length; i++){
+		 	v_imgs[i].addEventListener('click', proc2) 
+	 	}
+	}
+	
+	function proc2(){
+		//파라미터 변수 this(img)를 사용할 수 있다.
+		
+		if(pTag2 != null){
+			
+	 		pp = document.getElementsByClassName("pp2")[0];
+	 		
+			//p태그의 부모요소
+			guessBox = pp.parentNode;
+			
+			guessBox.removeChild(pp);
+		}
+		
+		//랜덤발생 5~10 사이;
+		ran = Math.floor(Math.random() * 6 + 5 );
+		
+		//textNode생성 - 할인율 : 10%
+		text = document.createTextNode("할인율 : " + ran + "%");
+		
+		//p태그 생성 <p class = "pp"> 할인율 10% </p>
+		pTag2 = document.createElement('p');
+		pTag2.setAttribute('class', 'pp2');
+	
+		pTag2.appendChild(text);
+		
+		//guess_box에 p태그 추가
+		//img를 파라미터변수로 받았잖어. 
+		//img를 this로 사용한다.
+		//guess_box를 검색하기 위해서 img를 기준으로 부모요소를 검색한다.
+		this.parentNode.appendChild(pTag2);
+		
+	}
+		 
+///////////////////////////////////////////////////////////////////////////////////////	 	
+ 	pTag = null; 	
+	function proc1(v_img){ //파라미터 - 이미지를 받은거야.아래 this라고 줘서 v_img(img)로 받은거야
+		//this를 v_img로 받은거
+		
+		
+	 	if(pTag != null){
+			
+	 		pp = document.getElementsByClassName("pp")[0];
+	 		
+			//p태그의 부모요소
+			guessBox = pp.parentNode;
+			
+			guessBox.removeChild(pp);
+		}
+		
+		
+		//랜덤발생 5~10 사이;
+		ran = Math.floor(Math.random() * 6 + 5 );
+		
+		//textNode생성 - 할인율 : 10%
+		text = document.createTextNode("할인율 : " + ran + "%");
+		
+		//p태그 생성 <p class = "pp"> 할인율 10% </p>
+		pTag = document.createElement('p');
+//		pTag.class = "pp"; // 이게 다르점이구만
+		//위에 대신에 이렇게 해
+		pTag.setAttribute('class', 'pp');
+		//클래스이름을 pp로
+		
+		
+		//p태그에 textNode추가한다.
+		pTag.appendChild(text);
+		
+		//guess_box에 p태그 추가
+		//img를 파라미터변수로 받았잖어. 
+		//img를 this를 파라미터로 넘겨서 v_img변수로 받았다.
+		//guess_box를 검색하기 위해서 img를 기준으로 부모요소를 검색한다.
+		v_img.parentNode.appendChild(pTag);
+		
+		/* guess_box = document.getElementById('result1');
+		guess_box.appendChild(pTag); */
+		
+	}
+
+
+
+
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>할인율</h3>		
+		&lt;img onclick = "proc1(this)" src = "" alt =""><br>
+		이미지를 클릭하면 p태그를 생성 guess_box에 p태그를 추가<br>
+		 &lt;p class = "pp">할인율 : 10%&lt;p> <br>
+		 할인율은 5~10사이의 난수를 발생한다.<br>
+		<br>
+		<div class = "result" id = "result1">
+			<div class = "guess_box"><img onclick = "proc1(this)" src = "../images/스포츠.jpg" alt ="스포츠"></div>
+			<div class = "guess_box"><img onclick = "proc1(this)" src = "../images/스포츠1.jpg" alt ="스포츠1"></div>
+			<div class = "guess_box"><img onclick = "proc1(this)" src = "../images/스포츠2.jpg" alt ="스포츠2"></div>
+			<div class = "guess_box"><img onclick = "proc1(this)" src = "../images/스포츠3.jpg" alt ="스포츠3"></div>
+		</div>
+	</div>
+	
+	<div class = "box">
+		<h3>할인율</h3>		
+		이미지를 클릭하면 p태그를 생성 guess_box에 p태그를 추가<br>
+		 &lt;p class = "pp">할인율 : 10%&lt;p> <br>
+		 할인율은 5~10사이의 난수를 발생한다.<br>
+		 <br>
+		 이벤트 일괄처리 <br>
+		 v_imgs = document.getElementsByClassName('c_img');<br>
+		 뒤에 ('c_img')[0]; 이렇게 [0]하면 단수, 아무것도 안쓰면 복수. 위아래 둘중에 하나만 쓰는거임<br>
+		 v_imgs = document.querySelectorAll('.c_img');<br>
+		 
+		 for(i=0; i&lt;v_imgs.length; i++){ <br>
+		 	v_imgs[i].addEventListener('click', proc2) <br>
+		 //addEventListener 이 함수 안에 proc2 이런 함수를 넣은거니까 proc2()이렇게 괄호 안붙여<br>
+		 }<br> 
+		 proc2는 새로 정의하는 사용자 함수
+		 proc2 함수 내에서 img를 this로 사용할 수 있다.
+		 
+		 
+		<br>
+		<div class = "result" id = "result2">
+			<div class = "guess_box"><img class = "c_img" src = "../images/스포츠.jpg" alt ="스포츠"></div>
+			<div class = "guess_box"><img class = "c_img" src = "../images/스포츠1.jpg" alt ="스포츠1"></div>
+			<div class = "guess_box"><img class = "c_img" src = "../images/스포츠2.jpg" alt ="스포츠2"></div>
+			<div class = "guess_box"><img class = "c_img" src = "../images/스포츠3.jpg" alt ="스포츠3"></div>
+		</div>
+	</div>
+</body>
+</html>

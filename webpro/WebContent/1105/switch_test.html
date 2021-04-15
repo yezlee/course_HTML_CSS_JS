@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	.div{
+		border : 1px solid #888;
+		height : auto;
+	}
+</style>
+<script>
+	function proc1(){
+		su1 = parseInt(prompt("정수1 입력하세요."));
+		su2 = parseInt(prompt("정수2 입력하세요."));
+		oper = prompt("연산을 입력하세요.");
+ 
+		//res는 출력용으로 쓰는거
+		res = "수1 : "  + su1 + "<br>"; //선언부 (타입이 필요가 없다)
+ 		res += "수2 : "  + su2 + "<br>";
+		res += "연산자 : "  + oper + "<br>";
+		 
+ 		switch(oper){
+ 		case "+" :
+ 			calc = su1 + su2;
+ 			break; // 이거없으면 제일 끝에 나누기만 남아
+ 		case "=" :
+ 			calc = su1 - su2;
+ 			break;
+ 		case "*" :
+ 			calc = su1 * su2;
+ 			break;
+ 		case "/" :
+ 			calc = su1 / su2;
+ 			break; 
+ 		}
+		
+ 		
+		res += `결과 : ${su1} ${oper} ${su2} = ${calc}`; 	
+ 		result = document.getElementById("result");
+ 		result.innerHTML = res;
+	}
+	
+	
+	
+	function proc2(){
+		//입력
+		score = prompt("점수를 입력하세요.");
+		grade = `결과 : ${score} <br>`; 	 //grade는 출력용
+		score = parseInt(score/10);
+		
+		
+		//비교 - switch
+		switch(score){
+		case 10 : 
+			grade = "당신의 학점은 A 입니다.";
+			break;
+		case 9 :
+			grade += "당신의 학점은 A 입니다.";
+			break;
+		case 8 :
+			grade += "당신의 학점은 B 입니다.";
+			break;
+		case 7 :
+			grade += "당신의 학점은 C 입니다.";
+			break;
+		case 6 :
+			grade += "당신의 학점은 D 입니다.";
+			break;
+		default :
+			grade += "당신의 학점은 F 입니다.";
+			break;
+		}
+		
+		//출력		
+ 		result2 = document.getElementById("result2");
+ 		result2.innerHTML = grade;
+	}
+	
+	function proc3(){
+		//입력1
+		in1 = prompt("첫번째 사람");
+
+		//입력2
+		in2 = prompt("두번째 사람");
+		
+		//res = "첫번째 사람 : " + in1 + "<br>"
+		res = `첫번째 사람 : ${in1} <br>`;
+		res += `두번째 사람 : ${in2} <br> 결과 : `;
+		
+		//승자비교
+		if(in1 == in2){
+			res += "비김";			
+		}else if( in1 == "가위" && in2 == "보" || in1 == "바위" && in2 == "가위" || in1 == "보" && in2 == "바위" ){
+			res += "첫번째 사람 이김";
+		}else{
+			res += "두번째 사람 이김";
+		}
+		
+		//출력
+ 		result3 = document.getElementById("result3");
+ 		result3.innerHTML = res;
+		
+	}
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>두 수 연산하기</h3>
+		수1, 수2 입력 - prompt()<br>
+		연산자 입력<br>
+		연산자에 따라 두 수를 계산한다.<br>
+		<input type ="button" value ="확인" onclick ="proc1()"><br><br>
+		<div class="result" id="result"></div>
+	</div>
+	<br><br>
+	<div class = "box">
+		<h3>학점 구하기</h3>
+		0에서 100사이의 값을 입력 - prompt()<br>
+		학점구하기<br>
+		<input type = "button" value = "확인" onclick ="proc2()"><br><br>
+		<div class="result" id="result2"></div>
+	</div>
+	<br><br>
+	<div class = "box">
+		<h3>가위바위보</h3>
+		두 사람의 가위바위보를 각각 입력 - prompt()<br>
+		승자를 출력하기<br>
+		<input type = "button" value = "확인" onclick ="proc3()"><br><br>
+		<div class="result" id="result3"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	window.onload = function(){
+	
+	input1 = parseInt(prompt("정수1 입력하세요.")); //parseInt() - 형변환
+	input2 = parseInt(prompt("정수2 입력하세요."));
+	
+	sum = input1 + input2;
+	sub = input1 - input2;
+	multi = input1 * input2;
+	divide = input1 / input2;
+	
+	res = "input1 : " + input1 + "<br>";
+	res += "input2 : " + input2 + "<br>";
+	res += "더하기 : " + sum + "<br>";	
+	res += "빼기 : " + sub + "<br>"
+	res += "곱하기 : " + multi + "<br>"
+	res += "나누기 : " + divide + "<br>"
+	
+	/* document.write("input1 : " + input1 + "<br>")
+	document.write("input2 : " + input2 + "<br>")
+	document.write("더하기 : " + sum + "<br>")
+	document.write("빼기 : " + sub + "<br>")
+	document.write("곱하기 : " + multi + "<br>")
+	document.write("나누기 : " + divide + "<br>") */
+	
+	//document.write(res); //얘를 실행하면 이미지를 덮어버려서 바디안에 넣어준 이미지 안뜸
+	document.getElementById('result').innerHTML = res;
+	}
+</script>
+</head>
+<body>
+<pre>
+ 입력 : prompt("para1" , "para2");
+ para2는 옵션, 생략가능
+ 입력한 값을 뎃셈 연산시 parseInt()를 이용해서 숫자로 변환
+ (덧셈 연산시에만! 나머지들은 괜찮아~)
+</pre>
+	<img src ="../images/Watercolor-Flower-PNG-Pic.png" alt="">
+	<div id = 'result'>
+	</div>
+</body>
+</html>

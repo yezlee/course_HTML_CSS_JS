@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	function calc(oper) {
+		
+		var x = document.getElementById('x').value; //인풋타입텍스트에는 밸류 아니면 이너html????
+		var y = document.getElementById('y').value;
+		
+		x = parseInt(x); /*얘는 더하기를 위해서 해주는거. 형변환 안하면 문자열이 결합되니까*/
+		y = parseInt(y);
+		
+		switch(oper){
+		case "+" :
+			vcalc = add(x,y); /*x,y를 지역변수로 만들어버려서 add한테 파라미터 준거야*/
+			break;
+		case "-" :
+			vcalc = sub(x,y);
+			break;
+		case "*" :
+			vcalc = multi(x,y);
+			break;
+		case "/" :
+			vcalc = divide(x,y); /*함수호출*/
+			break;
+		}
+		
+		//출력 - calc()함수 안에 있어야함.
+		res = ` x = ${x} <br> `;
+		res += ` y = ${y} <br> `;
+		res += ` ${x} ${oper} ${y} = ${vcalc} <br><br>`;
+
+		document.getElementById('result1').innerHTML += res; //+= 해주면 모든 결과가 누적되어서 나오지
+		
+		
+	}
+	
+	function divide(a,b){
+		return a/b; /*값을 리턴해주는거야. 그 값을 vcalc가 받어*/
+	}
+	function multi(a,b) {
+		return a*b;
+	}
+	function sub(a,b) {
+		return a-b;
+	}
+	function add(a,b) {
+		return a+b;
+	}
+	
+	
+	
+	
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>제목</h3>		
+		내용<br>
+		x : <input type = "text" id ="x"><br> <!-- 얻을때 value로 얻어오는거야 -->
+		y : <input type = "text" id ="y"><br>
+		<input type = "button" value = "확인 +" onclick = "calc('+')"><!-- 더하기를 해도 calc로 빼기를 해도 calc로 가는거 파라미터를 준거야 -->
+		<input type = "button" value = "확인 -" onclick = "calc('-')">
+		<input type = "button" value = "확인 *" onclick = "calc('*')">
+		<input type = "button" value = "확인 /" onclick = "calc('/')">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+</body>
+</html>

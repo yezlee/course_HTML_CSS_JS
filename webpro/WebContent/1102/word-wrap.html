@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	p.test{
+		width : 11em;
+		border : 1px solid #111;
+	}
+	.test2{
+		width : 11em;
+		border : 1px solid #111;
+		word-wrap : break-word;
+		word-break : keep-all;
+	}
+</style>
+</head>
+<body>
+<pre>
+공백없이 계속 이어지는 단어를 줄바꿈 처리 한다.
+word-wrap : break-word;
+
+단어가 끊어지지 않게 하는거
+word-break : keep-all;
+</pre>
+	<p class="test">
+       	매우 긴 단어가 있는 경우에 자동으로 잘라준다.
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    </p>
+	<p class="test2">
+       	매우 긴 단어가 있는 경우에 자동으로 잘라준다.
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    </p>
+</body>
+</html>

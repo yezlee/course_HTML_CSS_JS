@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	 window.onload = function(){
+		ff = document.getElementById('ff');
+		ff = document.querySelector('#ff');
+		
+		vname = document.getElementById('name');
+		addr = document.getElementById('addr');
+		bir = document.getElementById('birthday');
+		userid = document.getElementById('userid');
+		email = document.getElementById('email');
+		tel = document.getElementById('tel');
+		ff.onsubmit = function(){
+			//alert("submit");
+			nvalue = vname.value;
+			avalue = addr.value;
+			bvalue = bir.value;
+			mvalue = email.value;
+			ivalue = userid.value;
+			tvalue = tel.value;
+			
+			if(nvalue < 1){
+				alert("이름 입력 ");
+				return false;
+			}
+			if(avalue < 1){
+				alert("주소 입력 ");
+				return false;
+			}
+			if(bvalue < 1){
+				alert("생일 입력 ");
+				return false;
+			}
+			if(mvalue < 1){
+				alert("이메일 입력 ");
+				return false;
+			}
+			if(ivalue < 1){
+				alert("아이디 입력 ");
+				return false;
+			}
+			if(tvalue < 1){
+				alert("전화번호 입력 ");
+				return false;
+			}
+			
+			alert("성공");
+		}
+	} 
+	
+	
+	function proc1(){ 
+		
+		
+		vname = document.getElementById('name');
+		addr = document.getElementById('addr');
+		bir = document.getElementById('birthday');
+		userid = document.getElementById('userid');
+		email = document.getElementById('email');
+		tel = document.getElementById('tel');
+		pass = document.getElementById('pass');
+
+			//alert("submit");
+			nvalue = vname.value.trim().length;
+			avalue = addr.value.trim().length;
+			bvalue = bir.value.trim().length;
+			mvalue = email.value.trim().length;
+			ivalue = userid.value.trim().length;
+			tvalue = tel.value.trim().length;
+			pvalue = pass.value.trim().length;
+			
+			 if(nvalue < 1){
+				alert("이름 입력 ");
+				return false;
+			}
+					
+			//이름 길이 2~4
+			if(nvalue < 2 || nvalue > 4){
+				alert("이름 2자리에서 4자리 사이로 입력")
+				return false;
+			}
+			
+			//정규식 체크 - test() 함수를 이용할거임
+			//이름 정규식
+			nameReg = /^[가-힣]{2,4}$/;
+			if(!(nameReg.test(vname.value))){ //true이면 어차피 아래로 가니까 false냐고 조건걸어
+				alert("이름 형식 오류입니다.")
+				return false; //false면 함수를 종료한다.
+			}
+			if(avalue < 1){
+				alert("주소 입력 ");
+				return false;
+			}
+			if(bvalue < 1){
+				alert("생일 입력 ");
+				return false;
+			}
+			
+			//아이디공백
+			if(ivalue < 1){
+				alert("아이디 입력 ");
+				return false;
+			}
+			
+			if(ivalue < 6 || ivalue > 8){
+				alert("ID 6자리에서 8자리 사이로 입력")
+				return false;
+			}
+			
+			//아이디 정규식 - 영문소문자로 시작한다. 뒤에는 숫자나 대문자가 와도 괜찮음
+			idReg = /^[a-z][a-zA-Z0-9]{5,7}$/;  //아이디는 6-8자리수로 이루어짐. 처음에 [a-z]로 시작하는거 한글자했으니까 뒤에 5~7자리수
+			if(!(idReg.test(userid.value))){
+				alert("ID 형식 오류입니다.")
+				return false;
+			}
+			
+			 
+			//비밀번호
+			if(pvalue < 1){ //공백체크
+				alert("비밀번호 입력하세요.")
+				return false;
+			}
+			if(pvalue < 8 || pvalue > 15){
+				alert("비밀번호 8자리에서 15자리 사이로 입력")
+				return false;
+			}
+			//비밀번호정규식
+			//검색문자?= 는 기준문자임. 기준문자를 기준으로 해서 전방(앞의) 탐색으로 검색(검색문자를)한다.
+			//a = http://www.naver.com	https://www.naver.com
+			//http인지 https인자 비교한다. - 해당문자를 직접 가져온다. - value.match(reg)
+			//match()함수로, 매치 수행 후 해당 문자가 있으면, 문자를 가져오고 없으면 null을 리턴한다.
+			
+			// \w - 문자나 숫자  	. -모든 문자  	\d - 숫자
+ 			/* a = "https://www.naver.com";
+			reg = /\w+(?=:)/ 
+			b = a.match(reg)
+			if(b == "http"){
+				alert("http 요청입니다.")
+			}else if(b == "https"){
+				alert("https 요청입니다.")
+			} */
+			 
+			//정규식 - 전방탐색 응용 - 영문소문자대문자숫자특수문자가 반드시 한개 이상씩 포함된다.
+			passReg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&]).{8,15}/;
+			if(!(passReg.test(pass.value))){
+				alert("비밀번호 형식 오류입니다.")
+				return false;
+			}
+			
+			//?=앞에 찾는 문자가 있는데 찾는 검색할 문자가 없어 그말인즉슨 그 문자로 시작할수있다고???? 
+			// .* *가 .에 관한 거였음. 쩜. 즉 모든 문자가 와도되고 안와도되고					
+			 
+			 //이메일정규식
+			mailReg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z]+){1,2}$/
+			if(!(mailReg.test(email.value))){
+				alert("이메일 형식 오류입니다.")
+				return false;
+			}
+			
+			if(mvalue < 1){
+				alert("이메일 입력 ");
+				return false;
+			}
+			
+		
+			
+			//전화번호 정규식 
+			telReg = /\d{3}-\d{4}-\d{4}/;
+			if(!(telReg.test(tel.value))){
+				alert("전화번호 형식 오류입니다.")
+				return false;
+			}
+			
+			if(tvalue < 1){
+				alert("전화번호 입력 ");
+				return false;
+			}
+			
+			alert("성공"); 
+		
+	}
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>데이터 길이 / 공백 검증</h3>		
+		trim() - 얘는 메소드 : 기능은 앞뒤 공백 제거<br>
+		length - 얘는 속성 <br><br>
+		<h3>정규식 : 일정한 규칙에 따라 데이터를 입력 </h3>
+		정규식패턴.test(입력값) - return결과형 - true/false<br><br>
+		<h3>회원가입</h3>
+		<form id = "ff" action = "test.jsp" method = "post" onsubmit = "return false;">	
+<!--		(곧장 위에 tesp.jsp가 실행되지 않도록 onsubmit = "return false; 이걸 써줘야함)-->
+			<hr><br>
+			이름 : <input type='text' id='name'><br>
+			주소 : <input type='text' id='addr'><br>
+			생일 : <input type='date' id='birthday'><br>
+			아이디(6-8 문자) : 
+			<input type='text' id='userid'><br>
+			비밀번호 : <input type='password' id='pass'><br>
+			이메일 : <input type='email' id='email'><br>
+			휴대폰 : <input type='tel' id='tel'><br><br>
+<!-- 		<input type='submit' value='확인'><br><br>  -->
+			(input type='submit' 이걸하면 자동으로 form에 action이 실행됨)<br>
+			<input type='button' onclick = "proc1()" value='확인'><br>
+			<hr>
+		</form>
+	</div>
+</body>
+</html>

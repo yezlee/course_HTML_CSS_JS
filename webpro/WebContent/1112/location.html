@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	function proc1(){
+		res = "href => " + location.href + "<br>";
+		res += "protocol => " + location.protocol + "<br>";
+		res += "host => " + location.host + "hostname과 port를 합친게 이거" + "<br>";
+		res += "hostname => " + location.hostname + "<br>";
+		res += "port => " + location.port + "포트는 디폴트(80)이라 생략" + "<br>";
+
+		document.getElementById('result1').innerHTML = res;		
+	}
+	
+	function proc2(){
+		location.href = 'test.jsp';
+	}
+	
+	function goPage(){
+		location.href = 'test.jsp?code=2&name=홍길동';
+	}
+	
+	function replaceProc(){ //새로운 페이지로 대체
+		location.replace('test.jsp');		
+	}
+	
+	function reloadProc(){
+		str = ["Hello.", "JavaScript", "HTML", "CSS", "jQuery", "Bye." ]
+		//str[0] str[4]	str[2]
+		rand = Math.floor(Math.random()*str.length);
+		
+		res = "<h1>" + str[rand] + "</h1>";
+		document.getElementById('result2').innerHTML = res;
+		document.getElementById('result2').style.color = 'darkblue';
+		
+		setTimeout(function(){
+			location.reload();
+		}, 1000);
+	}
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>Location</h3>		
+		url의 정보를 얻는다.<br>
+		href : url 전체 정보<br>
+		protocol : 인터넷규약 http<br>
+		host : hostname + port<br>
+		hostname : server 이름<br>
+		port : 데이터의 출입구<br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>Location</h3>		
+		- 자동으로 특정페이지로 이동할 때 사용 <br>
+		<input type = "button" value = "페이지이동" onclick = "proc2()"> <!-- 얘는 온클릭할때 proc로 보낸거고 -->
+		<br><br>
+		
+		- a태그에서 이용한다. - 함수 호출하는데, 온클릭해서 호출하는게 아니고 : javascript:함수명() 이렇게 호출하는거. javascript이걸 꼭 써줘야한다!!!<br>
+		<a href = "javascript:goPage()">공지사항 목록</a>
+		<br><br>
+		
+		- 이벤트 서버전송(get) -location.href = 페이지 이름<br>
+		<button type = "button" onclick ="location.href='test.jsp?code=1&name=Korea'">공지사항목록</button><!-- input대신에 button타입 태그 써줘도 돼. -->
+		<!-- 얘는 아예 페이지로 직접보낸거고 -->
+		<br><br>
+		
+		- 새로운 문서로 대체한다. - location.replace(페이지이름)<br>
+		- replace()는 아예 현재페이지를 대체하기 때문에 뒤로가기가 실행되지 않는다.<br>
+		- 뒤로가기 방지하는 방법 location.replace() 함수로 사용된다.<br>
+		<button type = "button" onclick ="replaceProc()">공지사항목록</button>
+		<br><br>
+		
+		- 현재 문서를 다시 로드한다(reloading).<br>
+		- result2에 문자열을 배열로 생성하고 랜덤을 발생하여 문자열을 선택한다. <br>
+		- 선택된 문자열을 result2에 출력하고 1초후에 원래 문서로 돌아온다.<br>
+		<button type = "button" onclick ="reloadProc()">페이지 재호출</button>
+		<br><br>
+		
+		<div class="result" id = "result2"></div>
+	</div>
+</body>
+</html>

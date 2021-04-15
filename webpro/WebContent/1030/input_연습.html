@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	form{
+		width : 600px;
+		border : 2px solid #006ff9;
+		padding : 15px;
+		margin: 0px 0px 50px 15px;
+	}
+	label{
+		width : 100px;
+		height : 30px;
+		display : inline-block; /*인라인 요소라서 width가 안먹어서 해줌*/
+	}
+	input{
+		width : 81%;
+	}	
+	.gen_input{
+		width : auto;
+		height: 18px;
+		line-height : 18px;
+	}
+	button{
+		margin : 10px 0;
+		height : 30px;
+	}
+	textarea{
+		width : 99%;
+	}
+	p{
+		margin: 0 0 5px 0;
+	}
+	h1{
+		padding-left : 20px;
+		margin : 15px 0;
+	}
+</style>
+</head>
+<body>
+
+	<h1>이메일 전송 화면</h1>
+	<form name ="test" action = "input1.jsp" method ="post">
+		<label>이름</label>
+			<input type ="text" name = "name"><br>
+		<label>이메일</label>
+			<input type = "email" name ="email"><br>
+		<p>내용</p>
+			<textarea name ="area" rows = "10" cols = "60"></textarea><br>
+		<button type = "submit">전송</button>
+		<button type = "reset">재설정</button><br>
+	</form>
+	
+	<h1>회원 가입 화면</h1>
+	<form action = "input2.jsp" method ="post">
+		<label>이름</label>
+			<input type ="text" name = "name"><br>
+		<label>주소</label>
+			<input type ="text" name = "addr"><br>
+		<label>이메일</label>
+			<input type = "email" name ="email"><br>
+		<input class = "gen_input" type = "radio" name = "gender" value ="Male">Male<br>
+		<input class = "gen_input" type = "radio" name = "gender" value ="Female">Female<br>	
+		<button type = "submit">Send</button>
+		<button type = "reset">원래대로</button><br>
+	</form>
+</body>
+</html>

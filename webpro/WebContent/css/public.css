@@ -1,0 +1,36 @@
+@charset = "UTF-8";
+
+pre{
+	padding :  10px; 
+	background : rgba(70%,50%,130%,0.1);
+	border-top : 2px solid purple;
+	border-bottom : 5px double purple;
+	font-size : 0.9em;		
+	line-height : 1.5;	
+	font-family: none;
+}
+.box{
+	background : #efefef;
+	margin : 10px;
+	height : auto;
+	padding : 20px;
+}
+h3{
+	margin-top : 0.5em;
+}
+.box input[type = button], .box button{
+	width : auto;
+	background : orange;
+	color : #fff;
+	padding : 5px 10px; 
+	border-radius : 20px;
+	border: none;
+	font-weight : 900;
+	margin : 20px 0;
+}
+.result{
+	background : #fff;
+	padding: 15px;
+    line-height: 1.5;
+    margin: 5px;
+}

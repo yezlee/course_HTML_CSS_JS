@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel ="stylesheet" href="../css/public.css" type = "text/css"><!-- type = "text/css" 타입은 이건데 생략가능 -->
+<style>
+	select{
+		width : 150px;
+	}
+	div{
+		border : 1px solid #333;
+		padding : 10px;
+	}
+	form{
+		width : 50%;
+		padding : 5px;
+		border : 1px solid #eee;
+		box-sizing : border-box;
+		margin-left : 5%;
+	}
+	textarea{
+		width : calc(100% - 1%);
+	}
+</style>
+<script type = "text/javascript">
+//변수선언 : var변수명, let변수명, const변수명(const는 상수약자 즉 변하지않는거)
+	function proc1() {
+		var name = document.ff.name.value;
+		var area = document.ff.area.value;
+		
+		//area = area.replace(/\r\n/g, "<br>"); //g는 global
+		//위에 안먹혀서 아래처럼 써줌
+		area = area.replace(/\r/g, "").replace(/\n/g, "<br>"); //g는 global
+		//자바는 이게 되는데 여기선 replaceAll이게 안되서 /g를 써준거야. 글로벌. 전역 
+		
+		
+		// name = "sdf"; 위에 var타입을 쓰면 이름변경 가능한데
+		// 위에 var대신에 const타입 쓰면 final같은거야 나중에 이름변경 못해
+		
+		/* ECMAScript
+		표준 no - es2, es4, es6(2016), es8 */
+		//es6에서 var, const가 나옴. 우리가 사용하는게 es6임.
+		
+		//alert(name + "\n" + area);
+		
+
+		
+
+		sel = document.ff.fruit.options.length; //options라는 예전 객체가 있어
+		var res = "<h1>실행결과</h1>";
+		res += "이름 : " + name + "<br>";
+		res += "내용 :<br> " + area + "<br>";
+		res += "좋아하는 과일 : <br>";
+		
+		for(var i = 0; i < sel; i++){
+			if(document.ff.fruit.options[i].selected){ //배열에서 selected된값이 참이냐 라고 물어보는거야 저 if문은
+				res += document.ff.fruit.options[i].value + " ";
+			}
+			
+		}
+		document.querySelector("#result").innerHTML = res;
+		//document.querySelector("#result").textContent = res;
+		//textContent는 그냥 문자야. html태그!가 포함되어있으면 안에 html이 있음 이라는 뜻의 innerHTML을 써줘야지
+		//안그러고 textContent 로 하면 그냥 문자로 다 출력해버려. 태그로 안읽고		
+		
+	}//function proc1()
+	
+	function proc2(){
+		document.ff.submit();//얘도 jsp수행 1번은 스크립트에서직접실행 2번은 서브밋....?ㅠㅠㅠㅠㅠ
+	}
+</script>
+</head>
+<body>
+<pre>
+ 여러줄 입력 : &lt;textarea&gt;&lt;/textarea&gt;
+ 
+ 기능이 없다. onclick = "" 에 의해서 기능을 부여받는다. 
+ &lt;button type = "button" onclick = "">확인&lt;/button>
+ 
+ 전송기능을 수행.
+ &lt;button>전송&lt;/button>
+ &lt;button type = "submit">전송&lt;/button>
+ 
+ select요소의 선택한 값전달
+ jsp : String sel[] = repuest.getParameterValues("fruit") - sel[i]
+ script: document.ff.fruit.options[i].values
+</pre>
+
+	<form name = "ff" action = "buttonsend.jsp" method = "post">
+		이름<input name = "name"><br> <!-- 인풋 type 생략하면  이건 텍스트가 됨-->
+		남기고 싶은 말<br>
+		<textarea name ="area" rows = "10" cols = "60"></textarea>
+		<br>
+		좋아하는 과일<br>
+		<select name = "fruit" multiple size ="6">
+			<option value = "사과">사과</option><!-- 전송하면 밸류가 넘어가는거야. 실제로 사과라고 쓴건 화면에서만 영향이 있음 -->
+			<option value = "복숭아" selected>복숭아</option>
+			<option value = "바나나">바나나</option>
+			<option value = "참외">참외</option>
+			<option value = "수박" selected>수박</option>
+			<option value = "오렌지">오렌지</option>
+		</select>
+		<br><br>
+		<button type = "button" onclick = "proc1()">확인</button> 
+		<!-- 인풋은 닫는 태그가 없어서 밸류 써주고 그안에 내용을 써주는데 버튼은 닫는 태그가 있으니 그사이에 적어줌되지 -->
+		 => proc1() 함수호출.script에서 결과 실행되어 결과 발생 <br>
+		<button type = "button" onclick = "proc2()">확인전송</button> 
+		 => proc2() 함수호출해서 함수내에서 submit()을 실행 <br>
+		<button type = "submit">전송</button> => 직접 form의 action = "buttonsend.jsp"이 실행이 됨 <br>
+		<button type = "reset">취소</button><br>
+		<button>전송</button> => 위위줄에 전송이랑 똑같아 직접 액션을 실행. jsp가 실행. 새페이지로 바뀜
+		
+		<!--  위에 버튼 태그중에 다 기능이 있는데 버튼타입만 기능이 없어서 onclick기능 넣어줘야해 
+		버튼은 타입 생략하면 submit
+		-->
+	</form>
+	
+	<br><br>
+<pre>
+확인 버튼 클릭하면 proc1() 함수가 호출되어 실행 결과를 출력한다.
+* script에서 div에 접근하기 위해서
+아이디를 이용해서 접근할수도 있고
+-> document.querySelector("#result")
+   document.querySelector("div") <!--  querySelector 하면 첫번째거 하나만 접근이 됨. 그래서 querySelectorAll로 접근해야함 
+   es6에서 querySelector이거 나옴. 
+     그전에는 아래거 사용함. 실행은 위에게 더 편하고
+   -->
+   document.getElementById('result')  - ID라고 말해줘서 #안붙여도됨.
+   document.getElementsByTagName('div')[0] - [0]번째로 자동으로 접근함. 
+   <!-- 실행속도는 이게(구버전) 더 빠름 -->
+   
+* 접근요소에 출력을 한다. - innerHTML / textContent
+((출력하고자하는)컨텐트안에 html태그!!!!!가 있음 innerHTML 없음 textContent)
+
+
+select요소의 선택한 값 전달
+jsp : request.getParameterValues("fruit") <!--  jsp에서는 "" 자바에선 '' -->
+script : ff.fruit.value
+</pre>
+	   
+	<div id = "result" name = "result">
+				
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

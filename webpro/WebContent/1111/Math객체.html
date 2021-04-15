@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+</style>
+<script>
+	ran = Math.floor(Math.random() * 100 + 1);
+	count = 0;
+	ins = "";
+	
+	//버튼이 만들어지지 않은 상황해서 	document.getElementById('in').focus(); 이것만쓰면 오류남
+	//window.onload써줘서 실행하자마자 function을 실행하라고 해주는거
+	window.onload = function(){
+		document.getElementById('in').focus(); //커서 깜박깜박		
+	}
+
+	function proc1(){
+		res = "";
+		count ++;
+		invalue = document.getElementById('in').value.trim(); //value가 getter역할!
+		console.log('ran = ' + ran + " / invalue = " + invalue);//콘솔보기용
+		
+		ins += invalue + " ";
+		
+		if(invalue == ran){
+			res = "랜덤 : " + ran + "<br>";
+			res += ins + "<br>";
+			res += count + "번 입력해서 맞췄습니다.";
+		}else if(invalue > ran){
+			res += "더 작은수로 입력하세요."	;
+		}else{
+			res += "더 큰수로 입력하세요."
+		}
+		
+		document.getElementById('in').value = ""; //이렇게하면 값입력하고 if문끝나면 초기해주는거
+		document.getElementById('in').focus(); //커서 깜박깜박
+		document.getElementById('result1').innerHTML = res;
+	}
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>Math객체</h3>		
+		랜덤수를 발생하여 맞추는 프로그램이다. <br>
+		랜덤 숫자는 1부터 100사이. Math.random() * 100 + 1<br>
+		힌트와 count 구하기 - 몇번을 입력해서 맞췄나?<br>
+		
+		<br>
+		<input type = "text" id = "in"><br>
+		<input type = "button" value = "확인" onclick = "proc1()">
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+</body>
+</html>

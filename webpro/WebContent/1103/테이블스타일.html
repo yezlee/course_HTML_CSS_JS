@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	table{
+		border : 2px solid #999;
+		/* border-collapse: collapse; */
+		border-spacing : 10px;
+	}
+	caption{
+		margin-bottom : 10px;
+		margin-top : 10px;
+		caption-side : bottom;
+		font-size : 1.5em;
+	}
+	td{
+		text-align : center;
+		width : 200px;
+		height : 50px;
+	}
+	th{
+		height : 40px;
+	}
+	.title{
+		background : lightblue;
+	}
+	.aa{
+		background : lightgreen;
+	}
+	.bb{
+		background: orange;
+	}
+	.aa:nth-child(1){
+		background : gray;
+	}
+	tr:nth-child(odd){
+		background : yellow;
+	}
+	tr:nth-child(1){
+		background : lightblue;
+	}
+</style>
+</head>
+<body>
+	<table border = "1"> <!-- 이거 안해주고 스타일주면 테이블 바깥에만 줄생김 -->
+		<caption>VIP LIST</caption>
+		<tr class = "title">
+			<th>이름</th>
+			<th>전화번호</th>
+		</tr>
+		<tr class = "aa">
+			<td>홍길동</td>
+			<td>1234</td>
+		</tr>
+		<tr class = "bb">
+			<td>개나리</td>
+			<td>1234</td>
+		</tr>
+		<tr class = "aa">
+			<td>진달래</td>
+			<td>1234</td>
+		</tr>
+		<tr class = "bb">
+			<td>무궁화</td>
+			<td>1234</td>
+		</tr>
+	</table>
+	
+</body>
+</html>

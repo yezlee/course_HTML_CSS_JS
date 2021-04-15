@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	.div{
+		border : 2px solid #eee;
+		height : 50px;
+	}
+</style>
+<script>
+	
+	window.onload = function(){
+		document.getElementById('result').innerHTML = "<h1>Hello!</h1>";
+	}
+
+//	document.getElementById('result').innerHTML = "<h1>Hello!</h1>";
+	//에러뜸. Uncaught TypeError: Cannot set property 'innerHTML' of null
+	//스크립트가 먼저 실행되고 바디가 나중에 실행 
+	//document.getElementById('result') 이게 없대 그래서 innerHTML이걸 실행할수없어.
+	//result가 생성되기전에 result를 실행하라고 해서.
+	//버튼을 안만들어서 그래.
+	//만약 이 스크립트를 바디안에 id ="result" 이 값 아래다 놓으면 실행은됨.
+	
+	//방법이 있어. window.onload 를 실행하고 그 안에 실행문을 넣으면돼
+	
+	a = 100; // ; 안찍어도 괜찮다. 
+	b = "100";
+	
+	c = a == b;
+	d = a === b;
+	alert(c + "," + d);
+	
+	
+</script>
+
+</head>
+<body>
+<pre>
+script가 먼저 실행되어 body태그 안에 어떤 요소를 검색하고자 한다면
+검색이 불가하여 오류가 발생한다.
+
+body태그 안의 요소로 document를 생성하여 window에 완전히 실행되어졌을때
+script를 실행하도록 하기 위해서
+window.onload = function() 이 함수를 실행한다.
+
+<strong>window.onload = function()</strong>{
+	document.getElementById('result').innerHTML = "&lt;h1>Hello!&lt;/h1>";
+}
+
+
++
+//	document.getElementById('result').innerHTML = "&lt;h1>Hello!&lt;/h1>";
+	//에러뜸. Uncaught TypeError: Cannot set property 'innerHTML' of null
+	//스크립트가 먼저 실행되고 바디가 나중에 실행 
+	//document.getElementById('result') 이게 없대 그래서 innerHTML이걸 실행할수없어.
+	//result가 생성되기전에 result를 실행하라고 해서.
+	//버튼을 안만들어서 그래.
+	//만약 이 스크립트를 바디안에 id ="result" 이 값 아래다 놓으면 실행은됨.
+	
+	//방법이 있어. window.onload 를 실행하고 그 안에 실행문을 넣으면돼
+	
+	
+	바디태그에 아무것도 없으면 document.write써도돼!!
+	근데 바디태그에 뭔가 있으면 그걸 먼저 실행한다는걸 써줘야해 그게 window.onload
+</pre>
+	<div class="div" id ="result"></div>
+	<p> a = 100&nbsp;&nbsp;/&nbsp;&nbsp;b="100"<br>
+		a == b : true(값을 비교)&nbsp;&nbsp;&nbsp;<br>
+		a === b : false(값과 타입을 비교)</p>
+	
+</body>
+</html>

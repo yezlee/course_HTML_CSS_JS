@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	img{
+		width : 100px;
+	}
+</style>
+<script>
+	function proc1(){
+		setTimeout(function(){
+			document.getElementById('result1').style.background = "yellow";
+		}, 1000);
+		
+//		document.getElementById('result1'); //result1를 쓰고싶으면 get해야해. document로 부터
+		//그리고 여기서 스타일을 주는거야. .style 이런식으로
+	}
+
+	function proc2(btn){
+		
+		
+		btn.style.display = "none";
+		a = setInterval(function(){ //변수 선언 해줘야해
+			console.log(a);
+			//rgb(r,g,b) || rgb(240,128,200) || rgb(100%,54%,89%) || #fbf1d2
+			r = Math.floor(Math.random()*255 + 1);
+			g = Math.floor(Math.random()*255 + 1);
+			b = Math.floor(Math.random()*255 + 1);
+			//얘네가 이 안에 들어있어야지 1초에 한번씩 바뀜
+			
+			/* document.getElementById('result2').style.background
+			= ` rgb(${r}, ${g}, ${b}) ` ; */
+			
+			
+			cr = r.toString(16);
+			cg = g.toString(16);
+			cb = b.toString(16);
+			
+			document.body.style.background //getElementById('result2') 이걸 body로 바꿈
+			= ` #${cr}${cg}${cb} ` ;
+			
+		}, 100);		
+	}
+	
+	function proc3(btn){
+		clearInterval(a);
+		
+		document.getElementById('start').style.display = "inline";
+	}
+	
+	function proc4(btn){
+		
+		imgs = ["../images/딸기스무디.jpg", "../images/뱅쇼.jpg", "../images/봄이부시게.jpg", "../images/사막.jpg", "../images/사자.jpg", "../images/산.png", "../images/사자2.jpg", "../images/셔틀콕.jpg", "../images/수국.jpg", "../images/스포츠.jpg"]		
+		
+		//imgs[0], imgs[2], imgs[9], imgs[5].....
+		
+		//1초마다 한번씩 이미지 변경
+		v_img = document.getElementsByTagName('img')[0];
+		
+		b = setInterval(function(){
+			
+			idx = Math.floor(Math.random() * imgs.length);		
+		
+			v_img.src = imgs[idx];
+			
+			start = imgs[idx].lastIndexOf("/")+1; //slash뒤부터 가는거라서 +1
+			end = imgs[idx].lastIndexOf(".");
+			v_img.alt = imgs[idx].slice(start, end);
+		
+			console.log("alt = " + v_img.alt);	
+			
+		//	document.getElementsById('result4').innerHTML = v_img;
+		
+		
+		}, 1000);
+	}
+	
+	function proc5(btn){
+		clearInterval(b);
+		
+		document.getElementById('start').style.display = "inline";
+	}
+	
+</script>
+</head>
+<body>
+	<div class = "box">
+		<h3>setTimeout</h3>		
+		setTimeout(fn, millisec)<br>
+		 : 지정된 millisec 시간이 경과 후 fn함수를 한번 실행 후 종료한다.<br>
+		버튼을 클릭하면 1초후에 result1의 배경 색을 변경한다.<br>
+		<input type = "button" value = "확인" onclick = "proc1()"> 
+		<br>
+		<div class="result" id = "result1"></div>
+	</div>
+	<div class = "box">
+		<h3>setInterval</h3>		
+		setInterval(fn, millisec)<br>
+		 : 지정된 millisec 시간이 경과 후 fn함수를 반복적으로 실행한다.<br>
+		버튼을 클릭하면 1초후가 경과할 때 마다 result2의 배경 색을 변경한다.<br>
+		<input id = "start" type = "button" value = "확인" onclick = "proc2(this)"> <!-- 여기서 this는 인풋타입버튼(확인) 자체를 말함 -->
+		<input id = "end" type = "button" value = "종료" onclick = "proc3(this)"> 
+		<br>
+		<div class="result" id = "result2"></div>
+	</div>
+	<div class = "box">
+		<h3>setInterval</h3>		
+		setInterval(fn, millisec)<br>
+		 : 지정된 millisec 시간이 경과 후 fn함수를 반복적으로 실행한다.<br>
+		버튼을 클릭하면 1초후가 경과할 때 마다 이미지를 result2에 출력한다.<br>
+		<input id = "start2" type = "button" value = "확인" onclick = "proc4(this)">
+		<input id = "end2" type = "button" value = "종료" onclick = "proc5(this)"> 
+		<br>
+		<div class="result" id = "result4">
+			<img src="../images/코알라.jpg" alt ="">
+		</div>
+	</div>
+</body>
+</html>

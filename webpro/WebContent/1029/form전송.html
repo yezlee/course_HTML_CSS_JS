@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel ="stylesheet" href ="../css/public.css">
+<style>
+	label{
+		display : inline-block;
+		width : 120px;
+		height : 30px;
+	}
+	form{
+		border : 1px solid #eee;
+		padding : 10px;
+		width : 60%;
+		margin : auto;
+		margin-top : 50px;
+	}
+</style>
+</head>
+<body>
+	<pre>
+ &lt;input type = "hidden" name = "name" value = "홍길동"&gt;
+ 화면에서는 보이지 않지만 서버로 데이터를 전송한다.
+
+ &lt;input type = "image" src = "../images/check.png"&gt;
+ 전송 submit을 수행한다.
+	</pre>
+	<form action ="send.jsp" method ="post">
+		<label>아이디</label>
+			<input type = "text" name = "id" value = "aaa"><br> <!-- input타입은 아이디가 없고 인라인타입. 줄이 안바뀜 -->	
+		<label>비밀번호</label>
+			<input type = "password" name = "pass"><br>
+		<label>생일</label>
+			<input type = "date" name = "bir"><br>
+		<label>좋아하는 과일</label>
+			<input type = "checkbox" name = "fruit" value = "사과">사과 
+		    <input type = "checkbox" name = "fruit" value = "복숭아">복숭아
+		    <input type = "checkbox" name = "fruit" value = "참외">참외
+		    <input type = "checkbox" name = "fruit" value = "포도">포도
+		    <input type = "checkbox" name = "fruit" value = "수박">수박
+		    <input type = "checkbox" name = "fruit" value = "오렌지">오렌지
+		    <input type = "checkbox" name = "fruit" value = "자두">자두
+		    <br>
+	      <label>성별</label>
+	      	<input type = "radio" name = "gender" value = "남자">남자
+	      	<input type = "radio" name = "gender" value = "여자">여자
+	      	<br>
+      		<input type = "hidden" name = "name" value = "홍길동"> <!-- value는 화면상에 안보이지만 히든은 화면상에 없으니까 꼭!!! 밸류를 갖고있어야해-->
+	      <label>파일</label>
+	      <input type = "file" name ="file"><br> <!-- name 이 있어야지 jsp에서 추가시킬수가 있어 --> 		
+      		
+      		
+      		<input type = "submit">
+      		<!-- http://localhost/webpro/1029/form%EC%A0%84%EC%86%A1.html?id=aaa&fruit=on&fruit=on&gender=on&name=%ED%99%8D%EA%B8%B8%EB%8F%99
+      		이렇게 제출하려고 시도를 했다. 라고 기록만 남고. 실제로 jsp가 없으니까 넘어가진 않음 -->
+      		<input type = "reset"> <!-- 초기화 시킴 -->
+      		<input type = "image" src = "../images/check.png">
+	</form>
+</body>
+</html>

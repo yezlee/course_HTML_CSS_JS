@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+	.div{
+		width : 200px;
+		height : 200px;
+		border : 5px solid #eee;
+		margin : 10px;
+		display: table-cell;
+    	vertical-align: middle;
+	}
+	#d2{
+		border-radius : 50%;
+		box-shadow : 30px 20px 20px #ccc;
+	}
+	#d3{
+		border-radius : 10px 50px;
+	}
+	#d4{
+		border-radius : 0px 50% 50% 50%;
+	}
+	p{
+		display: table-cell;
+    	vertical-align: middle;
+	}
+</style>
+</head>
+<body>
+	<div class="div" id="d1">
+	</div>
+	<div class="div" id="d2">
+		<p>
+			border-radius : 50%;<br>
+			box-shadow : 30px 20px 20px #ccc;
+		</p>
+	</div>
+	<div class="div" id="d3">
+		<p>
+			border-radius : 10px 50px;
+		</p>
+	</div>
+	<div class="div" id="d4">
+		<p>
+			border-radius : 0px 50% 50% 50%;
+		</p>
+	</div>
+</body>
+</html>
