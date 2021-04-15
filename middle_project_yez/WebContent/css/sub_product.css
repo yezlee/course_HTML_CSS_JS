@@ -1,0 +1,82 @@
+@charset "UTF-8";
+@import url(sub_product.css);
+
+/* sub_product 스타일 시작*/ 
+
+/* 이미지옆에 설명 */
+.middle_product{
+	
+	margin-left: 10px;
+	margin-top: 20px;
+	margin-right: 10px;
+}
+
+/* 줄긋기가격 */
+.middle_product .strike{
+	font-size: 30px;
+	color: gray;
+	
+}
+
+/* 세일가격 */
+.middle_product .sale{
+	font-size: 30px;
+	color: red;
+}
+
+
+/* 상품이미지 */
+.middle_product img{
+	width: 200px;
+	height: 260px;
+	border: 3px solid gray;
+	float: left;
+	margin-right: 40px;
+}
+/* 기프티콘구매하기버튼 */
+.middle_product input{
+	margin-top: 10px;
+	background: #FF9B00;
+	font-size: 20px;
+	margin-right: 10px;
+	border-style: none;
+	font-weight: bold;
+	
+}
+/* 상품설명 */
+.middle_product .middle_product_ex{
+	margin-left: 10px;
+}
+/* 판매건수,신고건수 */
+.under_sales .sales{
+	width: 40px;
+	height: 40px;
+	border: 3px solid gray;
+	background: #FF9B00;
+	font-size: 20px;
+}
+
+/* 신고하기버튼 */
+.under_sales .under_sales1 .sos{
+	width: 950px;
+	height: 50px;
+	background: #282828;
+	font-size: 20px;
+	margin-left : 10px;
+	border-style: none;
+	font-weight: bold;
+	color: white;
+	margin-top: 30px;
+	display: block;
+}
+
+/* 판매자 판매건수 신고건수 */
+.under_sales p{
+	display: inline;
+	width: 100%;	
+}
+
+
+
+
+

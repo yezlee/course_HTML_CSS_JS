@@ -1,0 +1,246 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+@import url("https://fonts.googleapis.com/css?family=ZCOOL+XiaoWei|Noto+Sans+KR:300,400,500,700,900&display=swap&subset=korean");
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+
+/* 공통 */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, menu, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; }
+
+li { list-style: none; }
+img, fieldset, iframe { border: 0 none; }
+img { vertical-align: top; }
+a { outline: none; text-decoration: none; font-size: inherit; color: inherit; }
+img, fieldset, iframe { border: 0 none; }
+textarea { resize: none; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+address, strong, caption, cite, code, dfn, em, var { font-style: normal; font-weight: normal; }
+input { margin: 0; padding: 0; }
+button { border: 0; background-color: transparent; padding: 0; cursor: pointer; outline: none; }
+body, input, select, textarea, button { font-family: 'Lato', 'Noto Sans KR', 'Apple SD Gothic Neo', '맑은 고딕', arial, sans-serif; font-size: 12px; color: #333; letter-spacing: -0.04em; text-rendering: optimizeLegibility !important; -webkit-font-smoothing: antialiased !important; -moz-osx-font-smoothing: grayscale; }
+
+
+#container{
+	text-align: center;
+	overflow: hidden;
+}
+
+
+
+/* header 공통*/
+
+.header{
+	background: #ffb400;
+}
+
+.header #navbar{
+	width: 1050px;
+    margin: auto;
+}
+
+.header #navbar .inner{
+	display : cell;
+	table-layout: fixed;
+}
+.header #navbar .inner .logo{
+	display : table-cell;
+	padding-left: 135px;
+}
+
+.header #navbar .inner .logo h1{
+	width : 400px;
+}
+
+.header #navbar .inner .logo a{
+	background: url(../images/logo.png) no-repeat left center;	
+	display: block;
+	text-indent: -9999px;
+	height : 80px;
+}
+
+	
+
+
+
+	a:link{
+		color : #333;
+		text-decoration: none;
+	}
+	a:visited{
+		color : #333;
+	}
+	a:hover{
+		color : #000;
+	}
+	a:active{
+		color : #333;
+	}
+	::marker {
+	display : none;
+	}
+
+
+.header #navbar .inner .search{
+	display : table-cell;
+	width : 450px;
+    vertical-align: middle;
+    padding-left : 10px;
+}
+.header #navbar .inner .right_menu{
+	display : table-cell;
+	vertical-align: middle;
+	width : 500px;
+	text-align: right;
+}
+.header #navbar .inner .right_menu p{
+	display: inline-block;
+}
+.header #navbar .inner .right_menu p a{
+	font-family: 'NanumSquare', sans-serif;
+	display: inline-block;
+	font-size: 23px;
+    font-weight: 900;
+    margin-left: 20px;
+}
+.header #navbar .inner .right_menu p a:hover{
+	color : #111;
+	background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 20px 12px; 
+    	
+}
+
+
+.loginbar_wrap{
+	background : #333;
+	height: 30px;
+}
+
+.loginbar_wrap ul{
+	max-width: 1050px;
+    text-align: right;
+    line-height: 30px;
+    margin: auto;
+}
+	
+.loginbar_wrap ul li{
+	display: inline-block;
+	
+}
+
+.loginbar_wrap ul li a{
+	color : #fff;
+	margin-left : 15px;
+}
+
+.loginbar_wrap ul li a.bar:before{
+	content: "";
+    display: inline-block;
+    width: 1px;
+    height: 12px;
+    background-color: #ccc;
+    vertical-align: middle;
+    margin: -2px 15px 0 0;
+}
+
+
+
+/* body공통 */
+
+body{
+	margin : 0;.
+	
+}
+
+#container{
+	position: relative;
+	min-height: 100vh;
+}
+
+#container #content_wrap{
+	padding-bottom: 2.5rem; 
+}
+
+
+
+
+
+/* main_slide */
+
+.main_slide img{
+	width: 100%;
+}
+
+
+
+
+
+/* all_products */
+
+.body .all_products{
+	max-width : 1050px;	
+	margin: auto;
+} 
+
+.body .all_products  h3{
+	clear : both;
+}
+
+.body .all_products ul li{
+	float: left;	
+}
+
+.body .all_products .all_category{
+	
+}
+
+
+
+.body .all_products .all_category .category{
+	
+}
+
+
+.body .all_products .all_category .category input{
+	
+}
+.body .all_products .all_category .category label{
+	display: inline-block;
+}
+
+
+
+
+
+
+
+/*sub page CSS*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+
+#footer{
+	background : #eee;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 2.5rem;   
+
+}
+

@@ -1,0 +1,41 @@
+@charset "UTF-8";
+@import url(style.css);
+
+.side_bar{
+	height: 100%;
+	width : 250px;
+	background: #333;
+	position: fixed;
+}
+
+
+
+.side_bar #side_header h1 a{
+	background: url(../images/logo.jpg) no-repeat left center;	
+	display: block;
+	text-indent: -9999px;
+	width : 195px;
+	background-size: cover;
+}
+
+
+.side_bar .side_menu ul{
+	
+}
+
+.side_bar .side_menu ul li{
+	color : #fff;
+	padding : 5px;
+}
+
+#admin_footer{
+	position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#admin_footer p{
+	color:#fff;
+	font-size:12px;
+	text-align: center;
+}

@@ -1,0 +1,205 @@
+@charset "UTF-8";
+@import url(sub_mypagehs.css);
+
+/* sub_mypage 스타일 시작 */
+
+/* 메뉴탭 CSS시작 */
+  body {
+            color: #555;
+            background: #ffffff;
+            margin:0;
+            padding: 0;
+            box-sizing: border-box;}
+
+        h1 {
+            /*padding: 50px 0;*/
+            font-weight: 400;
+            font-weight: bold;}
+
+        p {
+            margin: 0 0 20px;
+            line-height: 1.5;}
+
+        .main {
+            min-width: 320px;
+            max-width: 800px;
+            padding: 50px;
+            margin: 0 auto;
+            background: #ffffff;}
+
+        section {
+            display: none;
+            padding: 20px 0 0;
+           }
+
+        /*라디오버튼 숨김*/
+          .tab{
+              display: none;}
+
+        .lb{
+            display: inline-block;
+            margin: 0 0 -1px;
+            padding: 15px 25px;
+            font-weight: 600;
+            text-align: center;
+            color: #bbb;
+            border: 1px solid transparent;
+            font-size: 30px;}
+
+        .lb:hover {
+            color: #c8c8c8;
+            cursor: pointer;}
+
+        /*input 클릭시, label 스타일*/
+        input:checked + label {
+              color: #555;
+              /*border: 1px solid #ddd;*/
+              /*border-top: 2px solid #FFCD28;*/
+              border-bottom: 1px solid #ffffff;}
+
+        #tab1:checked ~ #content1,
+        #tab2:checked ~ #content2,
+        #tab3:checked ~ #content3,
+        #tab4:checked ~ #content4 {
+            display: block;}
+/* 메뉴탭 CSS끝 */
+
+/* 거래내역조회 div */
+.deal{
+	padding-top: 10px;
+	border: 2px solid gray;
+	display: block;
+	background: #dcdcdc;
+	width: auto;
+	height: auto;
+}
+
+/* 상품명/브랜드명,조회기간 */
+.text{
+	font-size: 20px;
+	color: black;
+	
+}
+
+/* 상품명,브랜드명,조회기간 */
+.pr{
+	display: inline-block;
+	color: black;
+	height: 30px;
+	font-size: 20px;
+	
+}
+
+/* 주문일시 상품명 주문번호 결제금액 진행상태 */
+.ct{
+	display: inline;
+	color: black;
+	font-size: 20px;
+	margin-left: 60px;
+	
+}
+
+hr{
+	color: gray;
+	/*margin-top: 40px;*/
+}
+
+.deal{
+	margin-bottom: 30px;
+}
+/* 1주일,1개월,3개월,년월일,조회(거래내역조회)*/
+.deal .term{
+	width: 80px;
+	height: 30px;
+	background: white;
+}
+
+/*날짜선택(거래내역조회)*/
+.deal input{
+	width: 120px;
+	height: 30px;
+}
+/*상품명 브랜드명 텍스트(거래내역조회)*/
+.deal #tt{
+	width: 540px;
+	height: 30px;
+}
+/*조회버튼(거래내역조회)*/
+.deal #search{
+	width: 80px;
+	height: 30px;
+	background: #3c3c3c;
+	color: white;
+}
+/*포인트 현황(총 충전포인트, 총 사용포인트, 사용가능포인트)*/
+.po{
+	margin-top: 50px;
+	padding-top: 50px;
+	display: inline;
+	color: black;
+	font-size: 20px;
+	margin-left: 90px;
+}
+/*일시 구분 금액*(포인트정보)*/
+.po1{
+	display: inline;
+	margin-left: 160px;
+	color: black;
+	font-size: 20px;
+}
+
+/*내 정보 수정에서 이름아이디비밀번호핸드폰번호*/
+.label{
+	display : inline-block;
+	width: 120px;
+	height: 30px;
+}
+
+/*내정보수정하기 밑에 div*/
+#underdiv{
+	padding-top: 35px;
+	padding-left: 50px;
+	padding-right: 70px;
+	border: 1px solid gray;
+	height: 60px;
+	background: #dcdcdc;
+	font-size: 25px;
+}
+
+/* 내정부 수정하기에 탈퇴하기 버튼*/
+#exit{
+	background: #323232;
+	float: right;
+	color: white;
+	text-align: center;
+	width: auto;
+	height: auto;
+	font-size: 20px;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
